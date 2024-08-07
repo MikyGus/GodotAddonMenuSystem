@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwv5u40gmm567"]
+
+[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/InstantTransition.cs" id="2_w25us"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TransitionButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Push me!!!"
+script = ExtResource("1_ck3xo")
+
+[node name="InstantTransition" type="Control" parent="TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_w25us")
+
+[node name="TransitionButton2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 758.0
+offset_top = 382.0
+offset_right = 877.0
+offset_bottom = 413.0
+text = "And push me!!"
+script = ExtResource("1_ck3xo")
+
+[node name="InstantTransition" type="Control" parent="TransitionButton2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_w25us")

@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="MenySystem"
-config/features=PackedStringArray("4.2", "Mobile")
+run/main_scene="res://Testing.tscn"
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="MenySystem"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/menusystem/plugin.cfg")
 
 [rendering]
 
