@@ -10,8 +10,7 @@ namespace MenySystem.addons.menusystem.Buttons;
 public partial class TransitionButton : Button
 {
     [Export]
-    private StackTransitionType _transitionType;
-    private PackedScene _transitionTo;
+    public StackTransitionType _transitionType { get; private set; }
 
     [Export]
     public PackedScene TransitionTo
@@ -23,6 +22,7 @@ public partial class TransitionButton : Button
             _transitionTo = value;
         }
     }
+    private PackedScene _transitionTo;
 
     public override void _Ready()
     {
