@@ -59,9 +59,17 @@ public partial class TransitionButton : Button
     }
 
     private List<string> ValidateTransitionTo()
-        => TransitionTo is null
-            ? new List<string>() { "A scene to transition to is required!" }
-            : new List<string>();
+    {
+        if (TransitionTo is null)
+        {
+            return new List<string>() { "A scene to transition to is required!" };
+        }
+        else if (TransitionTo.Instantiate() is not Control)
+        {
+            return new List<string>() { "The transitionTo scene needs to derive from Control!" };
+        }
+        return new List<string>();
+    }
 
     private List<string> ValidateTransitionNode()
     {
