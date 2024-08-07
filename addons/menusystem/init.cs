@@ -9,17 +9,20 @@ public partial class init : EditorPlugin
     {
         Script buttonScript = GD.Load<Script>($"{Constants.BASE_PATH}Buttons/TransitionButton.cs");
         Texture2D buttonScriptIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/left_click.svg");
-        AddCustomType("TransitionButton", "Button", buttonScript, buttonScriptIcon);
+        AddCustomType("TransitionButton", Constants.NODE_BUTTON, buttonScript, buttonScriptIcon);
 
         Script instantTransition = GD.Load<Script>($"{Constants.BASE_PATH}Transitions/InstantTransition.cs");
         Texture2D instantTransitionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/fastForward.png");
-        AddCustomType("InstantTransition", "Control", instantTransition, instantTransitionIcon);
+        AddCustomType("InstantTransition", Constants.NODE_CONTROL, instantTransition, instantTransitionIcon);
+
+        AddAutoloadSingleton("MenuController", $"{Constants.BASE_PATH}MenuController.cs");
     }
 
     public override void _ExitTree()
     {
         RemoveCustomType("TransitionButton");
         RemoveCustomType("InstantTransition");
+        RemoveAutoloadSingleton("MenuController");
     }
 }
 #endif
