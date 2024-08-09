@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MenySystem"
-run/main_scene="res://Testing.tscn"
+run/main_scene="res://TestingBg.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 

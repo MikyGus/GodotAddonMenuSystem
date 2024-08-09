@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgkui68qbvkae"]
+
+[ext_resource type="Script" path="res://TestingBg.cs" id="1_ec3ap"]
+
+[sub_resource type="Gradient" id="Gradient_pphi1"]
+colors = PackedColorArray(0, 0.866667, 0, 1, 0.169909, 0.310125, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lv2ql"]
+gradient = SubResource("Gradient_pphi1")
+
+[node name="TestingBG" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ec3ap")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_lv2ql")

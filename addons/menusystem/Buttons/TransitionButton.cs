@@ -12,20 +12,20 @@ public partial class TransitionButton : Button
     [Export]
     public StackTransitionType TransitionType { get; private set; }
 
-    [Export]
-    public PackedScene TransitionTo
+    private string _transitionToPath;
+    [Export(PropertyHint.File, "*.tscn")]
+    public string TransitionToPath
     {
-        get => _transitionTo;
+        get => _transitionToPath;
         private set
         {
+            _transitionToPath = value;
             UpdateConfigurationWarnings();
-            _transitionTo = value;
         }
     }
-
     public Transition TransitionNode { get; private set; }
+    public PackedScene TransitionToScene => GD.Load<PackedScene>(TransitionToPath);
 
-    private PackedScene _transitionTo;
 
     public override void _Ready()
     {
@@ -42,10 +42,7 @@ public partial class TransitionButton : Button
 
     public bool IsValid() => ValidateNode().Count == 0;
 
-    private void OnButtonPressed()
-    {
-        MenuController.Instance.TransitionToMenu(this);
-    }
+    private async void OnButtonPressed() => await MenuController.Instance.TransitionToMenu(this);
 
     private void UpdateConfigurationWarnings(Node node) => UpdateConfigurationWarnings();
 
@@ -60,15 +57,15 @@ public partial class TransitionButton : Button
 
     private List<string> ValidateTransitionTo()
     {
-        if (TransitionTo is null)
+        if (string.IsNullOrEmpty(TransitionToPath))
         {
             return new List<string>() { "A scene to transition to is required!" };
         }
-        else if (TransitionTo.Instantiate() is not Control)
-        {
-            return new List<string>() { "The transitionTo scene needs to derive from Control!" };
-        }
-        return new List<string>();
+
+        PackedScene scene = GD.Load<PackedScene>(TransitionToPath);
+        return scene.Instantiate() is not Control
+            ? new List<string>() { "The transitionTo scene needs to derive from Control!" }
+            : new List<string>();
     }
 
     private List<string> ValidateTransitionNode()
