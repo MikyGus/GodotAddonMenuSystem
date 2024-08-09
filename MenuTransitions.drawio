@@ -124,6 +124,21 @@
         <mxCell id="KieXNN2Gj02x4O6grTwc-3" value="Button" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
           <mxGeometry x="130" y="70" width="100" height="300" as="geometry" />
         </mxCell>
+        <mxCell id="KieXNN2Gj02x4O6grTwc-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="299.92857142857133" y="221.02857142857135" as="sourcePoint" />
+            <mxPoint x="413.5" y="221.02857142857135" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="360" y="221" />
+              <mxPoint x="360" y="221" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KieXNN2Gj02x4O6grTwc-14" value="Create Scene" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KieXNN2Gj02x4O6grTwc-13">
+          <mxGeometry x="0.0252" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="KieXNN2Gj02x4O6grTwc-5" value="MenuController" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
           <mxGeometry x="250" y="70" width="100" height="300" as="geometry" />
         </mxCell>
@@ -135,6 +150,9 @@
         </mxCell>
         <mxCell id="KieXNN2Gj02x4O6grTwc-12" value="&lt;h1&gt;Push&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="80" y="30" width="490" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KieXNN2Gj02x4O6grTwc-15" value="InTransition = true" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#d79b00;fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="240" y="177" width="120" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
