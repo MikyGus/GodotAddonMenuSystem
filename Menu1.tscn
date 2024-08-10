@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=5 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
-[ext_resource type="Script" path="res://addons/menusystem/Transitions/InstantTransition.cs" id="2_w25us"]
+[ext_resource type="PackedScene" uid="uid://c6tpp7l10d2gu" path="res://PushTransition.tscn" id="2_wn6lf"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_3clht"]
+[ext_resource type="PackedScene" uid="uid://c027r8uocworm" path="res://PopTransition.tscn" id="3_dio8b"]
 
 [node name="Menu1" type="Control"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -27,11 +30,7 @@ text = "Push me!!! To2"
 script = ExtResource("1_ck3xo")
 TransitionToPath = "res://Menu2.tscn"
 
-[node name="InstantTransition" type="Control" parent="TransitionButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_w25us")
+[node name="PushTransition" parent="TransitionButton" instance=ExtResource("2_wn6lf")]
 
 [node name="TransitionButton4" type="Button" parent="."]
 layout_mode = 1
@@ -50,11 +49,7 @@ text = "Push me!!! To3"
 script = ExtResource("1_ck3xo")
 TransitionToPath = "res://Menu3.tscn"
 
-[node name="InstantTransition" type="Control" parent="TransitionButton4"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_w25us")
+[node name="PushTransition" parent="TransitionButton4" instance=ExtResource("2_wn6lf")]
 
 [node name="TransitionButton2" type="Button" parent="."]
 layout_mode = 1
@@ -65,11 +60,7 @@ script = ExtResource("1_ck3xo")
 TransitionType = 1
 TransitionToPath = "res://Menu2.tscn"
 
-[node name="InstantTransition" type="Control" parent="TransitionButton2"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_w25us")
+[node name="PopTransition" parent="TransitionButton2" instance=ExtResource("3_dio8b")]
 
 [node name="TransitionButton3" type="Button" parent="."]
 layout_mode = 1
@@ -89,11 +80,12 @@ script = ExtResource("1_ck3xo")
 TransitionType = 2
 TransitionToPath = "res://Menu3.tscn"
 
-[node name="InstantTransition" type="Control" parent="TransitionButton3"]
+[node name="MoveTransition" type="Control" parent="TransitionButton3"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_w25us")
+script = ExtResource("3_3clht")
+MoveDirection = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6tpp7l10d2gu"]
+
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="1_duqt0"]
+
+[node name="PushTransition" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_duqt0")
+MoveDirection = 2
+TransitionTime = 1.0
+TransitionType = 5

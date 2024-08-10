@@ -15,6 +15,10 @@ public partial class init : EditorPlugin
         Texture2D instantTransitionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/fastForward.png");
         AddCustomType("InstantTransition", Constants.NODE_CONTROL, instantTransition, instantTransitionIcon);
 
+        Script moveTransition = GD.Load<Script>($"{Constants.BASE_PATH}Transitions/MoveTransition.cs");
+        Texture2D moveTransitionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/arrowRight.png");
+        AddCustomType("MoveTransition", Constants.NODE_CONTROL, moveTransition, moveTransitionIcon);
+
         AddAutoloadSingleton("MenuController", $"{Constants.BASE_PATH}MenuController.cs");
     }
 

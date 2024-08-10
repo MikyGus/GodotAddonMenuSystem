@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8wkwqg76tqtq"]
+[gd_scene load_steps=5 format=3 uid="uid://b8wkwqg76tqtq"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_7ayad"]
-[ext_resource type="Script" path="res://addons/menusystem/Transitions/InstantTransition.cs" id="2_o82pn"]
+[ext_resource type="PackedScene" uid="uid://c6tpp7l10d2gu" path="res://PushTransition.tscn" id="2_xmlvm"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_f3b1v"]
+[ext_resource type="PackedScene" uid="uid://c027r8uocworm" path="res://PopTransition.tscn" id="3_sivtb"]
 
 [node name="Menu3" type="Control"]
 layout_mode = 3
@@ -28,11 +30,7 @@ text = "Push me!!! To 1"
 script = ExtResource("1_7ayad")
 TransitionToPath = "res://Menu1.tscn"
 
-[node name="InstantTransition" type="Control" parent="TransitionButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_o82pn")
+[node name="PushTransition" parent="TransitionButton" instance=ExtResource("2_xmlvm")]
 
 [node name="TransitionButton2" type="Button" parent="."]
 layout_mode = 0
@@ -45,11 +43,7 @@ script = ExtResource("1_7ayad")
 TransitionType = 1
 TransitionToPath = "res://Menu1.tscn"
 
-[node name="InstantTransition" type="Control" parent="TransitionButton2"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_o82pn")
+[node name="PopTransition" parent="TransitionButton2" instance=ExtResource("3_sivtb")]
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -64,3 +58,23 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Menu 3"
 horizontal_alignment = 1
+
+[node name="TransitionButton3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 319.0
+offset_right = 403.0
+offset_bottom = 350.0
+text = "Back to 1"
+script = ExtResource("1_7ayad")
+TransitionType = 2
+TransitionToPath = "res://Menu1.tscn"
+
+[node name="MoveTransition" type="Control" parent="TransitionButton3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_f3b1v")
+MoveDirection = 1
+TransitionTime = 1.0
+TransitionType = 9

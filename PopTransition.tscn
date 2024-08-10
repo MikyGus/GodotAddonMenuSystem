@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c027r8uocworm"]
+
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="1_6neye"]
+
+[node name="PopTransition" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6neye")
+MoveDirection = 3
+TransitionTime = 1.0
+TransitionType = 5
