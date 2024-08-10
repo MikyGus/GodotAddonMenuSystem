@@ -22,6 +22,7 @@ public partial class TransitionButton : Button
     }
 
     private string _transitionToPath;
+
     [Export(PropertyHint.File, "*.tscn")]
     public string TransitionToPath
     {
