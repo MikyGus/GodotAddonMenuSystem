@@ -11,14 +11,16 @@ public partial class InstantTransition : Transition
         ArgumentNullException.ThrowIfNull(transitionFrom, nameof(transitionFrom));
         ArgumentNullException.ThrowIfNull(transitionTo, nameof(transitionTo));
 
-        //transitionFrom.MenuController.PrePageTransition(transitionFrom);
-        transitionFrom.Visible = false;
-        //transitionFrom.MenuController.PostPageTransition(transitionFrom);
+        RaiseOnPreTransition(transitionFrom, transitionTo);
 
-        //transitionTo.MenuController.PrePageTransition(transitionTo);
+        transitionFrom.Visible = false;
+        RaiseOnPostPageFromTransition(transitionFrom);
+
         transitionTo.GlobalPosition = Vector2.Zero;
         transitionTo.Visible = true;
-        //transitionTo.MenuController.PostPageTransition(transitionTo);
+        RaiseOnPostPageToTransition(transitionTo);
+
+        RaiseOnPostTransition(transitionFrom, transitionTo);
 
         await Task.CompletedTask;
     }

@@ -27,6 +27,7 @@ public partial class MoveTransition : Transition
         transitionTo.GlobalPosition = transitionInPositions.start;
         transitionTo.Visible = true;
 
+        RaiseOnPreTransition(transitionFrom, transitionTo);
         Tween tween = CreateTween();
         tween.Parallel().TweenProperty(transitionTo, Constants.PROPERTY_POSITION, transitionInPositions.final, TransitionTime)
             .SetTrans(TransitionType)
@@ -35,6 +36,9 @@ public partial class MoveTransition : Transition
             .SetTrans(TransitionType)
             .SetEase(EaseType);
         await ToSignal(tween, Constants.EVENT_FINISHED);
+        RaiseOnPostPageFromTransition(transitionFrom);
+        RaiseOnPostPageToTransition(transitionTo);
+        RaiseOnPostTransition(transitionFrom, transitionTo);
     }
 
     public (Vector2 start, Vector2 final) GetPositions(MoveDirection direction, bool IsTransitioningTo)

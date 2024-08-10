@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=7 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
 [ext_resource type="PackedScene" uid="uid://c6tpp7l10d2gu" path="res://PushTransition.tscn" id="2_wn6lf"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="2_xoi08"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_3clht"]
 [ext_resource type="PackedScene" uid="uid://c027r8uocworm" path="res://PopTransition.tscn" id="3_dio8b"]
+[ext_resource type="Script" path="res://ExitButton.cs" id="6_1ldrx"]
 
 [node name="Menu1" type="Control"]
 layout_mode = 3
@@ -106,3 +107,29 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Menu 1"
 horizontal_alignment = 1
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_top = 100.0
+offset_right = 76.0
+offset_bottom = 173.0
+grow_horizontal = 2
+text = "EXIT"
+script = ExtResource("1_ck3xo")
+TransitionToPath = "res://empty.tscn"
+
+[node name="FadeTransition" type="Control" parent="ExitButton"]
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 133.0
+offset_right = 584.0
+offset_bottom = 173.0
+script = ExtResource("2_xoi08")
+FadeType = 2
+
+[node name="Node" type="Node" parent="ExitButton"]
+script = ExtResource("6_1ldrx")

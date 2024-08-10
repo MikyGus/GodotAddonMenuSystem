@@ -20,16 +20,20 @@ public partial class FadeTransition : Transition
         transitionTo.Visible = false;
         transitionTo.GlobalPosition = Vector2.Zero;
 
+        RaiseOnPreTransition(transitionFrom, transitionTo);
         if (FadeType.HasFlag(FadeType.Out))
         {
             await MenuController.Instance.CoverScreen.FadeToAlpha(1, TransitionTime);
             transitionFrom.Visible = false;
+            RaiseOnPostPageFromTransition(transitionFrom);
         }
         if (FadeType.HasFlag(FadeType.In))
         {
             transitionTo.Visible = true;
             await MenuController.Instance.CoverScreen.FadeToAlpha(0, TransitionTime);
+            RaiseOnPostPageToTransition(transitionTo);
         }
+        RaiseOnPostTransition(transitionFrom, transitionTo);
     }
 
 
