@@ -1,18 +1,18 @@
 using Godot;
 using MenySystem.addons.menusystem.Transitions;
 
-public partial class ExitButton : Node
+public partial class ExitButtonManager : Node
 {
     private Transition _transition;
     public override void _Ready()
     {
         _transition = GetNode<FadeTransition>("../FadeTransition");
-        _transition.OnPostPageToTransition += OnPostPage;
+        _transition.OnPostPageFromTransition += OnPostPage;
     }
 
     public override void _ExitTree()
     {
-        _transition.OnPostPageToTransition -= OnPostPage;
+        _transition.OnPostPageFromTransition -= OnPostPage;
     }
 
     private void OnPostPage(Control control)
