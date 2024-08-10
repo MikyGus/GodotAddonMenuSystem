@@ -32,7 +32,7 @@ public partial class TransitionButton : Button
         if (Engine.IsEditorHint())
         {
             ChildEnteredTree += UpdateConfigurationWarnings;
-            ChildExitingTree -= UpdateConfigurationWarnings;
+            ChildExitingTree += UpdateConfigurationWarnings;
         }
 
         TransitionNode = GetNodes.GetAllChildren<Transition>(this).FirstOrDefault();
