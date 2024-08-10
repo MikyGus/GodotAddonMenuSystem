@@ -8,6 +8,7 @@ namespace MenySystem.addons.menusystem;
 public partial class MenuController : CanvasLayer
 {
     public static MenuController Instance { get; private set; }
+    public FadeScreen CoverScreen { get; private set; }
 
     private Stack<Control> _menuStack = new();
     private bool _isPerformingTransition = false;
@@ -26,6 +27,19 @@ public partial class MenuController : CanvasLayer
             AnchorRight = 1
         };
         AddChild(_menuControl);
+
+        var fadeScreen = new FadeScreen()
+        {
+            Name = "CoverScreen",
+            AnchorLeft = 0,
+            AnchorTop = 0,
+            AnchorBottom = 1,
+            AnchorRight = 1,
+            Modulate = new Color(0, 0, 0, 0),
+            MouseFilter = Control.MouseFilterEnum.Ignore,
+        };
+        CoverScreen = fadeScreen;
+        AddChild(fadeScreen);
     }
 
     public async Task TransitionToMenu(TransitionButton transitionButton)

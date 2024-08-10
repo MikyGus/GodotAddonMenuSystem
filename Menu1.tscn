@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=6 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
 [ext_resource type="PackedScene" uid="uid://c6tpp7l10d2gu" path="res://PushTransition.tscn" id="2_wn6lf"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="2_xoi08"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_3clht"]
 [ext_resource type="PackedScene" uid="uid://c027r8uocworm" path="res://PopTransition.tscn" id="3_dio8b"]
 
@@ -30,7 +31,11 @@ text = "Push me!!! To2"
 script = ExtResource("1_ck3xo")
 TransitionToPath = "res://Menu2.tscn"
 
-[node name="PushTransition" parent="TransitionButton" instance=ExtResource("2_wn6lf")]
+[node name="FadeTransition" type="Control" parent="TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_xoi08")
 
 [node name="TransitionButton4" type="Button" parent="."]
 layout_mode = 1

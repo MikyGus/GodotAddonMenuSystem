@@ -8,7 +8,7 @@ public static class Constants
     public const string NODE_CONTROL = "Control";
 
     public const string PROPERTY_POSITION = "position";
-    //public const string PROPERTY_MODULATE_A = "modulate:a";
+    public const string PROPERTY_MODULATE_A = "modulate:a";
 
     public const string EVENT_FINISHED = "finished";
 }
