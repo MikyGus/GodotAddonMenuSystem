@@ -61,6 +61,7 @@ public partial class MenuController : CanvasLayer
             return;
         }
         _isPerformingTransition = true;
+        CoverScreen.MouseFilter = Control.MouseFilterEnum.Stop;
 
         (Control From, Control To) menus = (transitionButton.TransitionType) switch
         {
@@ -78,6 +79,7 @@ public partial class MenuController : CanvasLayer
         StackDebug();
         // Debug
 
+        CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
         _isPerformingTransition = false;
     }
 

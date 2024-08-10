@@ -37,7 +37,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_xoi08")
-FadeType = 1
 
 [node name="TransitionButton4" type="Button" parent="."]
 layout_mode = 1
@@ -93,6 +92,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_3clht")
 MoveDirection = 2
+TransitionTime = 3.9
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
