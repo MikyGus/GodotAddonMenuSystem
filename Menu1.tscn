@@ -36,6 +36,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_xoi08")
+FadeType = 1
 
 [node name="TransitionButton4" type="Button" parent="."]
 layout_mode = 1
