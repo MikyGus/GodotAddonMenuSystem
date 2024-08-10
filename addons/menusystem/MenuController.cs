@@ -58,9 +58,23 @@ public partial class MenuController : CanvasLayer
 
         await transitionButton.TransitionNode.PerformTransition(menus.From, menus.To);
 
-        //CleanupMenuNodes(transitionButton.TransitionType, menus);
+        CleanupMenuNodes(transitionButton.TransitionType, menus);
+
+        // Debug
+        //StackDebug();
+        // Debug
 
         _isPerformingTransition = false;
+    }
+
+    private void StackDebug()
+    {
+        GD.Print("-------------STACK-START--------");
+        foreach (Control control in _menuStack)
+        {
+            GD.Print(control.Name);
+        }
+        GD.Print("-------------STACK-END--------");
     }
 
     public void SetInitialMenu(PackedScene initialMenu)
@@ -87,7 +101,17 @@ public partial class MenuController : CanvasLayer
     private (Control from, Control to) PopFromMenuStack()
     {
         Control from = _menuStack.Pop();
-        Control to = _menuStack.Count > 0 ? _menuStack.Pop() : new Control();
+        Control to;
+        if (_menuStack.Count > 0)
+        {
+            to = _menuStack.Peek();
+            _menuControl.AddChild(to);
+        }
+        else
+        {
+            to = new Control();
+        }
+
         return (from, to);
     }
 
@@ -110,8 +134,6 @@ public partial class MenuController : CanvasLayer
         {
             _menuControl.RemoveChild(menus.From);
         }
-
-
 
         if (menus.To.IsInsideTree() == false)
         {
