@@ -61,7 +61,7 @@ public partial class MenuController : CanvasLayer
         CleanupMenuNodes(transitionButton.TransitionType, menus);
 
         // Debug
-        //StackDebug();
+        StackDebug();
         // Debug
 
         _isPerformingTransition = false;
@@ -74,6 +74,7 @@ public partial class MenuController : CanvasLayer
         {
             GD.Print(control.Name);
         }
+        //PrintOrphanNodes();
         GD.Print("-------------STACK-END--------");
     }
 
