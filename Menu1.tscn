@@ -120,7 +120,7 @@ offset_bottom = 173.0
 grow_horizontal = 2
 text = "EXIT"
 script = ExtResource("1_ck3xo")
-TransitionToPath = "res://empty.tscn"
+TransitionType = 1
 
 [node name="FadeTransition" type="Control" parent="ExitButton"]
 anchors_preset = 0

@@ -9,8 +9,17 @@ namespace MenySystem.addons.menusystem.Buttons;
 [Tool]
 public partial class TransitionButton : Button
 {
+    private StackTransitionType _transitionType;
     [Export]
-    public StackTransitionType TransitionType { get; private set; }
+    public StackTransitionType TransitionType
+    {
+        get => _transitionType;
+        private set
+        {
+            _transitionType = value;
+            UpdateConfigurationWarnings();
+        }
+    }
 
     private string _transitionToPath;
     [Export(PropertyHint.File, "*.tscn")]
@@ -57,9 +66,13 @@ public partial class TransitionButton : Button
 
     private List<string> ValidateTransitionTo()
     {
-        if (string.IsNullOrEmpty(TransitionToPath))
+        if (string.IsNullOrEmpty(TransitionToPath) && TransitionType != StackTransitionType.Pop)
         {
-            return new List<string>() { "A scene to transition to is required!" };
+            return new List<string>() { "A scene to transition to is required! Or change TransitionType to Pop" };
+        }
+        else if (TransitionType == StackTransitionType.Pop)
+        {
+            return new List<string>();
         }
 
         PackedScene scene = GD.Load<PackedScene>(TransitionToPath);
