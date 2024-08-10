@@ -5,16 +5,27 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MenySystem.addons.menusystem;
-public partial class MenuController : Node
+public partial class MenuController : CanvasLayer
 {
     public static MenuController Instance { get; private set; }
 
     private Stack<Control> _menuStack = new();
     private bool _isPerformingTransition = false;
+    private Control _menuControl;
 
     public override void _Ready()
     {
         Instance = this;
+
+        _menuControl = new Control()
+        {
+            Name = "Menus",
+            AnchorLeft = 0,
+            AnchorTop = 0,
+            AnchorBottom = 1,
+            AnchorRight = 1
+        };
+        AddChild(_menuControl);
     }
 
     public async Task TransitionToMenu(TransitionButton transitionButton)
@@ -47,7 +58,7 @@ public partial class MenuController : Node
 
         await transitionButton.TransitionNode.PerformTransition(menus.From, menus.To);
 
-        CleanupMenuNodes(transitionButton.TransitionType, menus);
+        //CleanupMenuNodes(transitionButton.TransitionType, menus);
 
         _isPerformingTransition = false;
     }
@@ -57,9 +68,10 @@ public partial class MenuController : Node
         if (initialMenu is null || initialMenu.Instantiate() is not Control)
         {
             GD.PushError($"{nameof(MenuController)}-{nameof(initialMenu)}: Is not valid");
+            return;
         }
         Control menu = initialMenu.Instantiate<Control>();
-        AddChild(menu);
+        _menuControl.AddChild(menu);
         _menuStack.Push(menu);
     }
 
@@ -68,6 +80,7 @@ public partial class MenuController : Node
         Control from = _menuStack.Count > 0 ? _menuStack.Peek() : new Control();
         Control to = transitionTo.Instantiate<Control>();
         _menuStack.Push(to);
+        _menuControl.AddChild(to);
         return (from, to);
     }
 
@@ -83,15 +96,23 @@ public partial class MenuController : Node
         Control from = _menuStack.Count > 0 ? _menuStack.Pop() : new Control();
         Control to = transitionTo.Instantiate<Control>();
         _menuStack.Push(to);
+        _menuControl.AddChild(to);
         return (from, to);
     }
 
-    private static void CleanupMenuNodes(StackTransitionType transitionType, (Control From, Control To) menus)
+    private void CleanupMenuNodes(StackTransitionType transitionType, (Control From, Control To) menus)
     {
-        if (transitionType is StackTransitionType.Push or StackTransitionType.Switch || menus.From.IsInsideTree() == false)
+        if (transitionType is StackTransitionType.Pop or StackTransitionType.Switch || menus.From.IsInsideTree() == false)
         {
             menus.From.QueueFree();
         }
+        else
+        {
+            _menuControl.RemoveChild(menus.From);
+        }
+
+
+
         if (menus.To.IsInsideTree() == false)
         {
             menus.To.QueueFree();

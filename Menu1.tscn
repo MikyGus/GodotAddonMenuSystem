@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=3 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
-[ext_resource type="PackedScene" uid="uid://b7dk1kirm0rft" path="res://Menu2.tscn" id="2_vf0y5"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/InstantTransition.cs" id="2_w25us"]
 
 [node name="Menu1" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -36,16 +34,37 @@ offset_bottom = 40.0
 script = ExtResource("2_w25us")
 
 [node name="TransitionButton2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 758.0
-offset_top = 382.0
-offset_right = 877.0
-offset_bottom = 413.0
-text = "And push me!!"
+layout_mode = 1
+offset_right = 119.0
+offset_bottom = 31.0
+text = "And pop me!!"
 script = ExtResource("1_ck3xo")
+TransitionType = 1
 TransitionToPath = "res://Menu2.tscn"
 
 [node name="InstantTransition" type="Control" parent="TransitionButton2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_w25us")
+
+[node name="TransitionButton3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "And pop me!!"
+script = ExtResource("1_ck3xo")
+TransitionType = 1
+TransitionToPath = "res://Menu2.tscn"
+
+[node name="InstantTransition" type="Control" parent="TransitionButton3"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -64,10 +83,3 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Menu 1"
 horizontal_alignment = 1
-
-[node name="Menu2" parent="." instance=ExtResource("2_vf0y5")]
-layout_mode = 1
-offset_left = 1064.0
-offset_top = 75.0
-offset_right = 1064.0
-offset_bottom = 75.0
