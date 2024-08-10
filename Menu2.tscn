@@ -74,6 +74,23 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_ksnaq")
 
+[node name="TransitionButton4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 443.0
+offset_right = 383.0
+offset_bottom = 474.0
+text = "Switch  to 3"
+script = ExtResource("1_fs786")
+TransitionType = 2
+TransitionToPath = "res://Menu3.tscn"
+
+[node name="InstantTransition" type="Control" parent="TransitionButton4"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ksnaq")
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 14
