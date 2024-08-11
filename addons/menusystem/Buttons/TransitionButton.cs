@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MenySystem.addons.menusystem.Buttons;
 [Tool]
-public partial class TransitionButton : Button
+public partial class TransitionButton : Control
 {
     private StackTransitionType _transitionType;
     [Export]
@@ -34,8 +34,6 @@ public partial class TransitionButton : Button
         }
     }
     public Transition TransitionNode { get; private set; }
-    public PackedScene TransitionToScene => GD.Load<PackedScene>(TransitionToPath);
-
 
     public override void _Ready()
     {
@@ -47,12 +45,22 @@ public partial class TransitionButton : Button
 
         TransitionNode = GetNodes.GetAllChildren<Transition>(this).FirstOrDefault();
 
-        Pressed += OnButtonPressed;
+        List<string> errors = ValidateNode();
+        if (errors.Count > 0)
+        {
+            GD.PushError($"{GetPath()}: Parameters not valid: {string.Join(", ", errors)}");
+            return;
+        }
+        if (GetParent() is BaseButton)
+        {
+            BaseButton parent = GetParent<BaseButton>();
+            parent.Pressed += OnButtonPressed;
+        }
     }
 
     public bool IsValid() => ValidateNode().Count == 0;
 
-    private async void OnButtonPressed() => await MenuController.Instance.TransitionToMenu(this);
+    private async void OnButtonPressed() => await MenuController.Instance.TransitionToMenu(TransitionNode, TransitionType, TransitionToPath);
 
     private void UpdateConfigurationWarnings(Node node) => UpdateConfigurationWarnings();
 
@@ -60,18 +68,25 @@ public partial class TransitionButton : Button
 
     private List<string> ValidateNode()
     {
-        List<string> errors = ValidateTransitionNode();
+        List<string> errors = new();
+        errors.AddRange(ValidateParent());
+        errors.AddRange(ValidateTransitionNode());
         errors.AddRange(ValidateTransitionTo());
         return errors;
     }
 
+    private IEnumerable<string> ValidateParent()
+    {
+        if (GetParent() is not BaseButton)
+        {
+            return new List<string>() { "Parent must be derived from 'BaseButton'" };
+        }
+        return new List<string>();
+    }
+
     private List<string> ValidateTransitionTo()
     {
-        if (string.IsNullOrEmpty(TransitionToPath) && TransitionType != StackTransitionType.Pop)
-        {
-            return new List<string>() { "A scene to transition to is required! Or change TransitionType to Pop" };
-        }
-        else if (TransitionType == StackTransitionType.Pop)
+        if (string.IsNullOrEmpty(TransitionToPath))
         {
             return new List<string>();
         }

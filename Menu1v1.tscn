@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://fqrrrci6usm8"]
+
+[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_3xg6w"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_kub6p"]
+
+[node name="Menu1v1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Menu 1 - Push - Move"
+
+[node name="TransitionButton" type="Control" parent="Button"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3xg6w")
+TransitionToPath = "res://Menu1.tscn"
+
+[node name="MoveTransition" type="Control" parent="Button/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_kub6p")

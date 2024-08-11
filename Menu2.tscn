@@ -12,86 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TransitionButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -422.0
-offset_top = -60.0
-offset_right = -334.0
-offset_bottom = -29.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Push me!!! To 1"
-script = ExtResource("1_fs786")
-TransitionToPath = "res://Menu1.tscn"
-
-[node name="InstantTransition" type="Control" parent="TransitionButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_ksnaq")
-
-[node name="TransitionButton3" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 130.0
-offset_top = -67.0
-offset_right = 255.0
-offset_bottom = -36.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Push me!!! To 3"
-script = ExtResource("1_fs786")
-TransitionToPath = "res://Menu3.tscn"
-
-[node name="InstantTransition" type="Control" parent="TransitionButton3"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_ksnaq")
-
-[node name="TransitionButton2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 351.0
-offset_right = 254.0
-offset_bottom = 382.0
-text = "And pop me!!"
-script = ExtResource("1_fs786")
-TransitionType = 1
-TransitionToPath = "res://Menu1.tscn"
-
-[node name="FadeTransition" type="Control" parent="TransitionButton2"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_w5qxf")
-
-[node name="TransitionButton4" type="Button" parent="."]
-layout_mode = 0
-offset_left = 264.0
-offset_top = 443.0
-offset_right = 383.0
-offset_bottom = 474.0
-text = "Switch  to 3"
-script = ExtResource("1_fs786")
-TransitionType = 2
-TransitionToPath = "res://Menu3.tscn"
-
-[node name="InstantTransition" type="Control" parent="TransitionButton4"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_ksnaq")
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 14
@@ -105,3 +25,103 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Menu 2"
 horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 295.0
+offset_right = 431.0
+offset_bottom = 326.0
+text = "To Menu 1 - Push - Instant"
+
+[node name="TransitionButton" type="Control" parent="Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fs786")
+TransitionToPath = "res://Menu1.tscn"
+
+[node name="InstantTransition" type="Control" parent="Button/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ksnaq")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 336.0
+offset_right = 431.0
+offset_bottom = 367.0
+text = "To Menu 3 - Push - Instant"
+
+[node name="TransitionButton3" type="Control" parent="Button2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fs786")
+TransitionToPath = "res://Menu3.tscn"
+
+[node name="InstantTransition" type="Control" parent="Button2/TransitionButton3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ksnaq")
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 383.0
+offset_right = 411.0
+offset_bottom = 414.0
+text = "Menu 1 - POP - Fade"
+
+[node name="TransitionButton2" type="Control" parent="Button3"]
+anchors_preset = 0
+script = ExtResource("1_fs786")
+TransitionType = 1
+TransitionToPath = "res://Menu1.tscn"
+
+[node name="FadeTransition" type="Control" parent="Button3/TransitionButton2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_w5qxf")
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 426.0
+offset_right = 513.0
+offset_bottom = 457.0
+text = "To Menu 3 - Switch - Instant"
+
+[node name="TransitionButton4" type="Control" parent="Button4"]
+anchors_preset = 0
+script = ExtResource("1_fs786")
+TransitionType = 2
+TransitionToPath = "res://Menu3.tscn"
+
+[node name="InstantTransition" type="Control" parent="Button4/TransitionButton4"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ksnaq")

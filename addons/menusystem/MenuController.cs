@@ -1,6 +1,6 @@
 ﻿using Godot;
-using MenySystem.addons.menusystem.Buttons;
 using MenySystem.addons.menusystem.PropertyTypes;
+using MenySystem.addons.menusystem.Transitions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -42,41 +42,43 @@ public partial class MenuController : CanvasLayer
         AddChild(fadeScreen);
     }
 
-    public async Task TransitionToMenu(TransitionButton transitionButton)
+    public async Task TransitionToMenu(Transition transitionNode, StackTransitionType transitionType, string transitionToPath)
     {
-        if (transitionButton is null)
+        if (transitionNode is null)
         {
-            GD.PushError($"{nameof(transitionButton)} is NULL.");
+            GD.PushError($"{nameof(transitionNode)} is NULL.");
             return;
         }
-        else if (transitionButton.IsValid() == false)
-        {
-            GD.PushError($"{nameof(transitionButton)}: is not valid!");
-            return;
-        }
-
         if (_isPerformingTransition)
         {
             GD.PushWarning("Transition active! May not start a new at the moment");
             return;
         }
+
+        if (string.IsNullOrEmpty(transitionToPath))
+        {
+            transitionToPath = Constants.MENU_EMPTY_PATH;
+        }
+
         _isPerformingTransition = true;
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Stop;
 
-        (Control From, Control To) menus = (transitionButton.TransitionType) switch
+        PackedScene transitionToScene = GD.Load<PackedScene>(transitionToPath);
+
+        (Control From, Control To) menus = transitionType switch
         {
-            StackTransitionType.Push => PushToMenuStack(transitionButton.TransitionToScene),
+            StackTransitionType.Push => PushToMenuStack(transitionToScene),
             StackTransitionType.Pop when _menuStack.Count >= 1 => PopFromMenuStack(),
-            StackTransitionType.Switch => SwitchMenuInStackTo(transitionButton.TransitionToScene),
+            StackTransitionType.Switch => SwitchMenuInStackTo(transitionToScene),
             _ => (new Control(), new Control())
         };
 
-        await transitionButton.TransitionNode.PerformTransition(menus.From, menus.To);
+        await transitionNode.PerformTransition(menus.From, menus.To);
 
-        CleanupMenuNodes(transitionButton.TransitionType, menus);
+        CleanupMenuNodes(transitionType, menus);
 
         // Debug
-        StackDebug();
+        //StackDebug();
         // Debug
 
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;

@@ -5,11 +5,13 @@ using MenySystem.addons.menusystem;
 [Tool]
 public partial class init : EditorPlugin
 {
+    private const string TransitionButton = "TransitionButton";
+
     public override void _EnterTree()
     {
-        Script buttonScript = GD.Load<Script>($"{Constants.BASE_PATH}Buttons/TransitionButton.cs");
+        Script buttonScript = GD.Load<Script>($"{Constants.BASE_PATH}Buttons/{TransitionButton}.cs");
         Texture2D buttonScriptIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/left_click.svg");
-        AddCustomType("TransitionButton", Constants.NODE_BUTTON, buttonScript, buttonScriptIcon);
+        AddCustomType(TransitionButton, Constants.NODE_CONTROL, buttonScript, buttonScriptIcon);
 
         Script instantTransition = GD.Load<Script>($"{Constants.BASE_PATH}Transitions/InstantTransition.cs");
         Texture2D instantTransitionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/fastForward.png");
@@ -28,7 +30,7 @@ public partial class init : EditorPlugin
 
     public override void _ExitTree()
     {
-        RemoveCustomType("TransitionButton");
+        RemoveCustomType(TransitionButton);
         RemoveCustomType("InstantTransition");
         RemoveCustomType("MoveTransition");
         RemoveCustomType("FadeTransition");
