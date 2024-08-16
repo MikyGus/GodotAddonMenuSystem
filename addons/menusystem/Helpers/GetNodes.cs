@@ -1,5 +1,7 @@
 ﻿using Godot;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MenuControl.addons.MenuControl.Helpers;
 public static class GetNodes
@@ -17,13 +19,25 @@ public static class GetNodes
         }
     }
 
+    public static void ForEach<T>(this IEnumerable<T> values, Action<T> stuffToDo)
+    {
+        if (values?.Any() ?? false)
+        {
+            foreach (T value in values)
+            {
+                stuffToDo?.Invoke(value);
+            }
+        }
+    }
+
+
     /// <summary>
-    /// Gets all nodes of the specified class. NOTE!!! The specified class need to have the[Tool] attribute!!
+    /// Gets all nodes of the specified class. NOTE!!! The specified class need to have the[Tool] attribute to work in the editor!!
     /// </summary>
     /// <typeparam name="T">The class we are searching for</typeparam>
     /// <param name="node">The node we start our search.</param>
     /// <returns>An IEnumerable collection of all nodes found</returns>
-    public static IEnumerable<T> GetAllChildren<T>(Node node) where T : Node
+    public static IEnumerable<T> GetAllChildren<T>(this Node node) where T : Node
     {
         Godot.Collections.Array<Node> childrens = node.GetChildren();
         foreach (Node child in childrens)

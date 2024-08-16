@@ -60,7 +60,7 @@ public partial class TransitionButton : Control
 
     public bool IsValid() => ValidateNode().Count == 0;
 
-    private async void OnButtonPressed() => await MenuController.Instance.TransitionToMenu(TransitionNode, TransitionType, TransitionToPath);
+    private async void OnButtonPressed() => await MenuController.Instance.TransitionToMenu(this);
 
     private void UpdateConfigurationWarnings(Node node) => UpdateConfigurationWarnings();
 

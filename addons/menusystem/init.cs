@@ -6,6 +6,8 @@ using MenySystem.addons.menusystem;
 public partial class init : EditorPlugin
 {
     private const string TransitionButton = "TransitionButton";
+    private const string QuitGame = "QuitGame";
+    private const string TestPrintOption = "TestPrintOption";
 
     public override void _EnterTree()
     {
@@ -25,6 +27,16 @@ public partial class init : EditorPlugin
         Texture2D fadeTransitionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/contrast.png");
         AddCustomType("FadeTransition", Constants.NODE_CONTROL, fadeTransition, fadeTransitionIcon);
 
+
+        Script quitOption = GD.Load<Script>($"{Constants.BASE_PATH}TransitionOptions/QuitGameTransitionOption.cs");
+        Texture2D quitOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/power_30dp.svg");
+        AddCustomType(QuitGame, Constants.NODE_CONTROL, quitOption, quitOptionIcon);
+
+        Script testOption = GD.Load<Script>($"{Constants.BASE_PATH}TransitionOptions/TestPrintTransitionOption.cs");
+        Texture2D testOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/experiment_30dp.svg");
+        AddCustomType(TestPrintOption, Constants.NODE_CONTROL, testOption, testOptionIcon);
+
+
         AddAutoloadSingleton("MenuController", $"{Constants.BASE_PATH}MenuController.cs");
     }
 
@@ -34,6 +46,8 @@ public partial class init : EditorPlugin
         RemoveCustomType("InstantTransition");
         RemoveCustomType("MoveTransition");
         RemoveCustomType("FadeTransition");
+        RemoveCustomType(QuitGame);
+        RemoveCustomType(TestPrintOption);
         RemoveAutoloadSingleton("MenuController");
     }
 }

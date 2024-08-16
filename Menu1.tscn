@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=8 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="2_xoi08"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_3clht"]
 [ext_resource type="Script" path="res://Exit.cs" id="4_htm1p"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/QuitGameTransitionOption.cs" id="6_ry6ak"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/TestPrintTransitionOption.cs" id="7_l7px6"]
 [ext_resource type="Texture2D" uid="uid://cu1x4u58iwwxr" path="res://icon.svg" id="7_lwre5"]
 
 [node name="Menu1" type="Control"]
@@ -94,7 +96,6 @@ offset_left = -4.0
 offset_right = -4.0
 grow_horizontal = 2
 script = ExtResource("1_ck3xo")
-TransitionType = 1
 
 [node name="FadeTransition" type="Control" parent="Exit/ExitButton"]
 anchors_preset = 0
@@ -104,3 +105,15 @@ offset_right = 584.0
 offset_bottom = 173.0
 script = ExtResource("2_xoi08")
 FadeType = 2
+
+[node name="TestPrintOption" type="Control" parent="Exit/ExitButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_l7px6")
+
+[node name="QuitGame" type="Control" parent="Exit/ExitButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ry6ak")

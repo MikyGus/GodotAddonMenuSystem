@@ -16,11 +16,8 @@ public partial class MoveTransition : Transition
     [Export]
     public Tween.EaseType EaseType { get; private set; } = Tween.EaseType.Out;
 
-    public override async Task PerformTransition(Control transitionFrom, Control transitionTo)
+    protected override async Task PerformTransition(Control transitionFrom, Control transitionTo)
     {
-        ArgumentNullException.ThrowIfNull(transitionFrom, nameof(transitionFrom));
-        ArgumentNullException.ThrowIfNull(transitionTo, nameof(transitionTo));
-
         (Vector2 start, Vector2 final) transitionOutPositions = GetPositions(MoveDirection, false);
         (Vector2 start, Vector2 final) transitionInPositions = GetPositions(MoveDirection, true);
 
