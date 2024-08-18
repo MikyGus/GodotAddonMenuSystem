@@ -30,51 +30,37 @@ public abstract partial class Transition : Control
 
     protected abstract Task PerformTransition(Control transitionFrom, Control transitionTo);
 
-    protected void RaiseOnPostPageFromTransition(Control menu)
+    private void RaiseOptionSetUnset(WhenToDoAction whenToDoAction)
     {
         TransitionBttnFrom?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.AfterPageFromTransition)
-            .ForEach(x => x.AfterPageFromTransition_Set());
+            .Where(x => x.WhenToPerformAction == whenToDoAction)
+            .ForEach(x => x.SetAction());
         TransitionBttnTo?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.AfterPageFromTransition)
-            .ForEach(x => x.AfterPageFromTransition_UnSet());
+            .Where(x => x.WhenToPerformAction == whenToDoAction)
+            .ForEach(x => x.UnsetAction());
+    }
 
+    protected void RaiseOnPostPageFromTransition(Control menu)
+    {
+        RaiseOptionSetUnset(WhenToDoAction.AfterPageFromTransition);
         OnPostPageFromTransition?.Invoke(menu);
     }
 
     protected void RaiseOnPostPageToTransition(Control menu)
     {
-        TransitionBttnFrom?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.AfterPageToTransition)
-            .ForEach(x => x.AfterPageToTransition_Set());
-        TransitionBttnTo?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.AfterPageToTransition)
-            .ForEach(x => x.AfterPageToTransition_UnSet());
-
+        RaiseOptionSetUnset(WhenToDoAction.AfterPageToTransition);
         OnPostPageToTransition?.Invoke(menu);
     }
 
     protected void RaiseOnPreTransition(Control menuFrom, Control menuTo)
     {
-        TransitionBttnFrom?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.BeforeAllTransition)
-            .ForEach(x => x.BeforeAllTransitions_Set());
-        TransitionBttnTo?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.BeforeAllTransition)
-            .ForEach(x => x.BeforeAllTransitions_UnSet());
-
+        RaiseOptionSetUnset(WhenToDoAction.BeforeAllTransition);
         OnPreTransition?.Invoke(menuFrom, menuTo);
     }
 
     protected void RaiseOnPostTransition(Control menuFrom, Control menuTo)
     {
-        TransitionBttnFrom?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.AfterAllTransition)
-            .ForEach(x => x.AfterAllTransitions_Set());
-        TransitionBttnTo?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == WhenToDoAction.AfterAllTransition)
-            .ForEach(x => x.AfterAllTransitions_UnSet());
-
+        RaiseOptionSetUnset(WhenToDoAction.AfterAllTransition);
         OnPostTransition?.Invoke(menuFrom, menuTo);
     }
 }
