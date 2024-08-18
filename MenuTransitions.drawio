@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0" version="24.7.6" pages="4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0" version="24.7.6" pages="5">
   <diagram name="RelationOfNodes" id="iKxuEZNfw2O1NoVfiC6R">
-    <mxGraphModel dx="1195" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -83,6 +83,12 @@
         </mxCell>
         <mxCell id="TVJO6SpJhbvBE_Pmetm3-25" value="&lt;div&gt;Special built node&amp;nbsp;&lt;/div&gt;&lt;div&gt;for this addon&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="600" y="50" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m5n6xwrtbQx-6HZyjeRE-1" value="Added as a child-node" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="580" y="585" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m5n6xwrtbQx-6HZyjeRE-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.344;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="m5n6xwrtbQx-6HZyjeRE-1" target="TVJO6SpJhbvBE_Pmetm3-12">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -426,8 +432,8 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="H6VCM9rkzvEjiYDD5jLO" name="Page-4">
-    <mxGraphModel dx="683" dy="359" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="H6VCM9rkzvEjiYDD5jLO" name="TransitionOptionFlow">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -551,7 +557,7 @@
         <mxCell id="SrEQ-w8Tzjgz04323CKw-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.004;entryY=0.205;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="SrEQ-w8Tzjgz04323CKw-14" target="SrEQ-w8Tzjgz04323CKw-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SrEQ-w8Tzjgz04323CKw-18" value="Transition (Pop)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SrEQ-w8Tzjgz04323CKw-17">
+        <mxCell id="SrEQ-w8Tzjgz04323CKw-18" value="TransitionTo (Pop)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SrEQ-w8Tzjgz04323CKw-17">
           <mxGeometry x="-0.1294" y="-2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -594,8 +600,8 @@
         </mxCell>
         <mxCell id="SrEQ-w8Tzjgz04323CKw-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.006;entryY=0.418;entryDx=0;entryDy=0;exitX=0;exitY=0.32;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" target="SrEQ-w8Tzjgz04323CKw-32" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="280" y="947" as="sourcePoint" />
-            <mxPoint x="180" y="946.35" as="targetPoint" />
+            <mxPoint x="280" y="946" as="sourcePoint" />
+            <mxPoint x="180" y="945.35" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="SrEQ-w8Tzjgz04323CKw-30" value="TransitionTo" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SrEQ-w8Tzjgz04323CKw-29">
@@ -604,10 +610,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="SrEQ-w8Tzjgz04323CKw-31" value="" style="rounded=1;whiteSpace=wrap;html=1;align=left;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="60" y="917" width="110" height="60" as="geometry" />
+          <mxGeometry x="60" y="916" width="110" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SrEQ-w8Tzjgz04323CKw-32" value="&lt;div&gt;&lt;b&gt;TransitionOption&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;(CoverScreen)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="70" y="922" width="110" height="60" as="geometry" />
+          <mxGeometry x="70" y="921" width="110" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SrEQ-w8Tzjgz04323CKw-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.006;entryY=0.418;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="SrEQ-w8Tzjgz04323CKw-36" source="CPVKuuxMwk3hCAHTmc0U-9">
           <mxGeometry relative="1" as="geometry">
@@ -635,6 +641,108 @@
         </mxCell>
         <mxCell id="SrEQ-w8Tzjgz04323CKw-37" value="Only applicable&amp;nbsp;&amp;nbsp; if&amp;nbsp; ToMenu also have TransitionOptions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="500" y="990" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SrEQ-w8Tzjgz04323CKw-39" value="&lt;div align=&quot;left&quot;&gt;&lt;b&gt;FromMenu&lt;/b&gt;&lt;/div&gt;&lt;div&gt;(HUD)&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="820" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="SrEQ-w8Tzjgz04323CKw-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.32;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;entryPerimeter=0;" edge="1" source="SrEQ-w8Tzjgz04323CKw-39" parent="1" target="SrEQ-w8Tzjgz04323CKw-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="758.75" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="220" y="855" />
+              <mxPoint x="220" y="930" />
+              <mxPoint x="280" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SrEQ-w8Tzjgz04323CKw-41" value="&lt;div&gt;Transition&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SrEQ-w8Tzjgz04323CKw-40">
+          <mxGeometry x="0.0062" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SrEQ-w8Tzjgz04323CKw-42" value="When the menus&amp;nbsp; TransitionOptions are called is determined&amp;nbsp; by " style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="310" y="1040" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="WZIIO_JZExYn0QdGctAv" name="TransitionOptionSetUnset">
+    <mxGraphModel dx="1195" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="R_KTMWfppF2SagQqjste-1" value="BeforeAllTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="100" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-5" value="&lt;h1 style=&quot;font-size: 60px;&quot;&gt;&lt;font style=&quot;font-size: 60px;&quot;&gt;Transition&lt;/font&gt;&lt;/h1&gt;" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;rotation=90;" vertex="1" parent="1">
+          <mxGeometry x="139" y="230" width="550" height="285" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-6" value="&lt;h2&gt;From Menu&lt;/h2&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="60" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-7" value="&lt;h2&gt;To Menu&lt;/h2&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="580" y="60" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.081;entryY=0.698;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-1" target="R_KTMWfppF2SagQqjste-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="142" />
+              <mxPoint x="230" y="142" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-9" value="AfterAllTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="100" y="515" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.081;entryY=0.698;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="358" y="547" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="230" y="547" />
+              <mxPoint x="230" y="547" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-11" value="AfterPageToTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="100" y="361" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.081;entryY=0.698;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="358" y="393" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="230" y="393" />
+              <mxPoint x="230" y="393" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-13" value="AfterPageFromTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="100" y="220" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.081;entryY=0.698;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="358" y="252" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="230" y="252" />
+              <mxPoint x="230" y="252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-15" value="AfterAllTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="630" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.07;entryY=0.304;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-15" target="R_KTMWfppF2SagQqjste-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="136" />
+              <mxPoint x="610" y="136" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-17" value="BeforeAllTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="630" y="515" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R_KTMWfppF2SagQqjste-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.812;entryY=0.296;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-17" target="R_KTMWfppF2SagQqjste-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
