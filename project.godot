@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MenuController="*res://addons/menusystem/MenuController.cs"
+MenuController="*res://addons/menusystem/MenuController.tscn"
 
 [dotnet]
 
