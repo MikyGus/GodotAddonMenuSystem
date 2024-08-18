@@ -10,9 +10,17 @@ public partial class MenuController : CanvasLayer
     public static MenuController Instance { get; private set; }
     public FadeScreen CoverScreen { get; private set; }
 
-    private Stack<Control> _menuStack = new();
+    private Stack<StackMenu> _menuStack = new();
     private bool _isPerformingTransition = false;
     private Control _menuControl;
+
+    private record struct StackMenu
+    {
+        public Control Menu { get; set; }
+        public TransitionButton Button { get; set; }
+    }
+
+    private static StackMenu DefaultStackMenu = new() { Menu = new Control() };
 
     public override void _Ready()
     {
@@ -78,15 +86,17 @@ public partial class MenuController : CanvasLayer
         string transitionToPath = string.IsNullOrEmpty(transitionButton.TransitionToPath) ? Constants.MENU_EMPTY_PATH : transitionButton.TransitionToPath;
         PackedScene transitionToScene = GD.Load<PackedScene>(transitionToPath);
 
-        (Control From, Control To) menus = transitionButton.TransitionType switch
+        SetTransitionButtonToCurrentMenu(transitionButton);
+
+        (StackMenu From, StackMenu To) menus = transitionButton.TransitionType switch
         {
             StackTransitionType.Push => PushToMenuStack(transitionToScene),
             StackTransitionType.Pop when _menuStack.Count >= 1 => PopFromMenuStack(),
             StackTransitionType.Switch => SwitchMenuInStackTo(transitionToScene),
-            _ => (new Control(), new Control())
+            _ => (DefaultStackMenu, DefaultStackMenu)
         };
 
-        await transitionButton.TransitionNode.PerformTransition(menus.From, menus.To, transitionButton, null);
+        await transitionButton.TransitionNode.PerformTransition(menus.From.Menu, menus.To.Menu, menus.From.Button, menus.To.Button);
 
         CleanupMenuNodes(transitionButton.TransitionType, menus);
 
@@ -98,12 +108,19 @@ public partial class MenuController : CanvasLayer
         _isPerformingTransition = false;
     }
 
+    private void SetTransitionButtonToCurrentMenu(TransitionButton transitionButton)
+    {
+        StackMenu currentStackMenu = _menuStack.Pop();
+        currentStackMenu.Button = transitionButton;
+        _menuStack.Push(currentStackMenu);
+    }
+
     private void StackDebug()
     {
         GD.Print("-------------STACK-START--------");
-        foreach (Control control in _menuStack)
+        foreach (StackMenu control in _menuStack)
         {
-            GD.Print(control.Name);
+            GD.Print(control.Menu.Name);
         }
         //PrintOrphanNodes();
         GD.Print("-------------STACK-END--------");
@@ -117,59 +134,62 @@ public partial class MenuController : CanvasLayer
             return;
         }
         Control menu = initialMenu.Instantiate<Control>();
+        StackMenu stackMenu = new StackMenu() { Menu = menu };
         _menuControl.AddChild(menu);
-        _menuStack.Push(menu);
+        _menuStack.Push(stackMenu);
     }
 
-    private (Control from, Control to) PushToMenuStack(PackedScene transitionTo)
+    private (StackMenu from, StackMenu to) PushToMenuStack(PackedScene transitionTo)
     {
-        Control from = _menuStack.Count > 0 ? _menuStack.Peek() : new Control();
-        Control to = transitionTo.Instantiate<Control>();
+        StackMenu from = _menuStack.Count > 0 ? _menuStack.Peek() : DefaultStackMenu;
+        Control toMenu = transitionTo.Instantiate<Control>();
+        StackMenu to = new StackMenu() { Menu = toMenu };
         _menuStack.Push(to);
-        _menuControl.AddChild(to);
+        _menuControl.AddChild(to.Menu);
         return (from, to);
     }
 
-    private (Control from, Control to) PopFromMenuStack()
+    private (StackMenu from, StackMenu to) PopFromMenuStack()
     {
-        Control from = _menuStack.Pop();
-        Control to;
+        StackMenu from = _menuStack.Pop();
+        StackMenu to;
         if (_menuStack.Count > 0)
         {
             to = _menuStack.Peek();
-            _menuControl.AddChild(to);
+            _menuControl.AddChild(to.Menu);
         }
         else
         {
-            to = new Control();
+            to = DefaultStackMenu;
         }
 
         return (from, to);
     }
 
-    private (Control from, Control to) SwitchMenuInStackTo(PackedScene transitionTo)
+    private (StackMenu from, StackMenu to) SwitchMenuInStackTo(PackedScene transitionTo)
     {
-        Control from = _menuStack.Count > 0 ? _menuStack.Pop() : new Control();
-        Control to = transitionTo.Instantiate<Control>();
+        StackMenu from = _menuStack.Count > 0 ? _menuStack.Pop() : DefaultStackMenu;
+        Control toMenu = transitionTo.Instantiate<Control>();
+        StackMenu to = new() { Menu = toMenu };
         _menuStack.Push(to);
-        _menuControl.AddChild(to);
+        _menuControl.AddChild(to.Menu);
         return (from, to);
     }
 
-    private void CleanupMenuNodes(StackTransitionType transitionType, (Control From, Control To) menus)
+    private void CleanupMenuNodes(StackTransitionType transitionType, (StackMenu From, StackMenu To) menus)
     {
-        if (transitionType is StackTransitionType.Pop or StackTransitionType.Switch || menus.From.IsInsideTree() == false)
+        if (transitionType is StackTransitionType.Pop or StackTransitionType.Switch || menus.From.Menu.IsInsideTree() == false)
         {
-            menus.From.QueueFree();
+            menus.From.Menu.QueueFree();
         }
         else
         {
-            _menuControl.RemoveChild(menus.From);
+            _menuControl.RemoveChild(menus.From.Menu);
         }
 
-        if (menus.To.IsInsideTree() == false)
+        if (menus.To.Menu.IsInsideTree() == false)
         {
-            menus.To.QueueFree();
+            menus.To.Menu.QueueFree();
         }
     }
 }

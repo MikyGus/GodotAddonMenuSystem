@@ -55,6 +55,13 @@ offset_right = 223.0
 offset_bottom = 222.0
 script = ExtResource("3_3clht")
 
+[node name="TestPrintOption" type="Control" parent="TransitionTextureButton/TransitionButton5"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_l7px6")
+WhenToPerformAction = 2
+
 [node name="TransitionTextureButton2" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 375.0
