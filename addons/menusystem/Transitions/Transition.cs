@@ -30,37 +30,37 @@ public abstract partial class Transition : Control
 
     protected abstract Task PerformTransition(Control transitionFrom, Control transitionTo);
 
-    private void RaiseOptionSetUnset(WhenToDoAction whenToDoAction)
+    private void RaiseOptionSetUnset(WhenToDoAction whenToDoActionFrom, WhenToDoAction whenToDoActionTo)
     {
         TransitionBttnFrom?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == whenToDoAction)
+            .Where(x => x.WhenToPerformAction == whenToDoActionFrom)
             .ForEach(x => x.SetAction());
         TransitionBttnTo?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == whenToDoAction)
+            .Where(x => x.WhenToPerformAction == whenToDoActionTo)
             .ForEach(x => x.UnsetAction());
     }
 
     protected void RaiseOnPostPageFromTransition(Control menu)
     {
-        RaiseOptionSetUnset(WhenToDoAction.AfterPageFromTransition);
+        RaiseOptionSetUnset(WhenToDoAction.AfterPageFromTransition, WhenToDoAction.AfterPageToTransition);
         OnPostPageFromTransition?.Invoke(menu);
     }
 
     protected void RaiseOnPostPageToTransition(Control menu)
     {
-        RaiseOptionSetUnset(WhenToDoAction.AfterPageToTransition);
+        RaiseOptionSetUnset(WhenToDoAction.AfterPageToTransition, WhenToDoAction.AfterPageFromTransition);
         OnPostPageToTransition?.Invoke(menu);
     }
 
     protected void RaiseOnPreTransition(Control menuFrom, Control menuTo)
     {
-        RaiseOptionSetUnset(WhenToDoAction.BeforeAllTransition);
+        RaiseOptionSetUnset(WhenToDoAction.BeforeAllTransition, WhenToDoAction.AfterAllTransition);
         OnPreTransition?.Invoke(menuFrom, menuTo);
     }
 
     protected void RaiseOnPostTransition(Control menuFrom, Control menuTo)
     {
-        RaiseOptionSetUnset(WhenToDoAction.AfterAllTransition);
+        RaiseOptionSetUnset(WhenToDoAction.AfterAllTransition, WhenToDoAction.BeforeAllTransition);
         OnPostTransition?.Invoke(menuFrom, menuTo);
     }
 }

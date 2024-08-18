@@ -31,6 +31,4 @@ public partial class FadeTransition : Transition
         }
         RaiseOnPostTransition(transitionFrom, transitionTo);
     }
-
-
 }

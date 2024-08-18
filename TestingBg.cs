@@ -1,7 +1,7 @@
 using Godot;
 using MenySystem.addons.menusystem;
 
-public partial class TestingBg : Control
+public partial class TestingBg : Node2D
 {
     public override void _Ready()
     {

@@ -26,6 +26,8 @@ public partial class MenuController : CanvasLayer
     {
         Instance = this;
 
+        ProcessMode = ProcessModeEnum.Always;
+
         _menuControl = new Control()
         {
             Name = "Menus",

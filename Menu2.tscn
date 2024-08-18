@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_fs786"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/InstantTransition.cs" id="3_ksnaq"]
-[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="3_w5qxf"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_ltv4y"]
 
 [node name="Menu2" type="Control"]
 layout_mode = 3
@@ -100,11 +100,14 @@ script = ExtResource("1_fs786")
 TransitionType = 1
 TransitionToPath = "res://Menu1.tscn"
 
-[node name="FadeTransition" type="Control" parent="Button3/TransitionButton2"]
+[node name="MoveTransition" type="Control" parent="Button3/TransitionButton2"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_w5qxf")
+script = ExtResource("3_ltv4y")
+MoveDirection = 3
+TransitionTime = 2.0
+TransitionType = 4
 
 [node name="Button4" type="Button" parent="."]
 layout_mode = 0

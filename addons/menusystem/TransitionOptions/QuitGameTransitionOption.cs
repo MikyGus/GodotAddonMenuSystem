@@ -2,5 +2,5 @@
 public partial class QuitGameTransitionOption : TransitionOption
 {
     public override void SetAction() => GetTree().Quit();
-    public override void UnsetAction() => throw new System.NotImplementedException();
+    public override void UnsetAction() { }
 }
