@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=10 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="2_xoi08"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_3clht"]
 [ext_resource type="Script" path="res://Exit.cs" id="4_htm1p"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/PauseGameTransitionOption.cs" id="5_w730e"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/TranslucentScreenTransitionOption.cs" id="6_euw8w"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/QuitGameTransitionOption.cs" id="6_ry6ak"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/TestPrintTransitionOption.cs" id="7_l7px6"]
 [ext_resource type="Texture2D" uid="uid://cu1x4u58iwwxr" path="res://icon.svg" id="7_lwre5"]
@@ -63,7 +64,7 @@ offset_bottom = 40.0
 script = ExtResource("7_l7px6")
 WhenToPerformAction = 2
 
-[node name="TransitionTextureButton2" type="TextureButton" parent="."]
+[node name="PauseButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 375.0
 offset_top = 292.0
@@ -71,7 +72,7 @@ offset_right = 503.0
 offset_bottom = 420.0
 texture_normal = ExtResource("7_lwre5")
 
-[node name="TransitionButton" type="Control" parent="TransitionTextureButton2"]
+[node name="TransitionButton" type="Control" parent="PauseButton"]
 layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
@@ -79,23 +80,30 @@ offset_bottom = 40.0
 script = ExtResource("1_ck3xo")
 TransitionToPath = "res://Menu2.tscn"
 
-[node name="MoveTransition" type="Control" parent="TransitionTextureButton2/TransitionButton"]
+[node name="MoveTransition" type="Control" parent="PauseButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_3clht")
 MoveDirection = 2
-TransitionTime = 2.0
-TransitionType = 4
+TransitionType = 7
 
-[node name="PauseGameTransitionOption" type="Control" parent="TransitionTextureButton2/TransitionButton"]
+[node name="TranslucentScreenTransitionOption" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_euw8w")
+FadeTime = 6.0
+WhenToPerformAction = 0
+
+[node name="PauseGameTransitionOption" type="Control" parent="PauseButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_w730e")
 WhenToPerformAction = 0
 
-[node name="Label" type="Label" parent="TransitionTextureButton2"]
+[node name="Label" type="Label" parent="PauseButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -9,6 +9,7 @@ public partial class MenuController : CanvasLayer
 {
     public static MenuController Instance { get; private set; }
     public FadeScreen CoverScreen { get; private set; }
+    public FadeScreen TranslucentScreen { get; private set; }
 
     private Stack<StackMenu> _menuStack = new();
     private bool _isPerformingTransition = false;
@@ -28,28 +29,11 @@ public partial class MenuController : CanvasLayer
 
         ProcessMode = ProcessModeEnum.Always;
 
-        _menuControl = new Control()
-        {
-            Name = "Menus",
-            AnchorLeft = 0,
-            AnchorTop = 0,
-            AnchorBottom = 1,
-            AnchorRight = 1
-        };
-        AddChild(_menuControl);
+        _menuControl = GetNode<Control>("Menus");
+        TranslucentScreen = _menuControl.GetNode<FadeScreen>("TranslucentScreen");
 
-        var fadeScreen = new FadeScreen()
-        {
-            Name = "CoverScreen",
-            AnchorLeft = 0,
-            AnchorTop = 0,
-            AnchorBottom = 1,
-            AnchorRight = 1,
-            Modulate = new Color(0, 0, 0, 0),
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        CoverScreen = fadeScreen;
-        AddChild(fadeScreen);
+        CoverScreen = GetNode<FadeScreen>("CoverScreen");
+        CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
     }
 
     //public async Task TransitionToMenu(Transition transitionNode, StackTransitionType transitionType, string transitionToPath)
@@ -98,6 +82,8 @@ public partial class MenuController : CanvasLayer
             _ => (DefaultStackMenu, DefaultStackMenu)
         };
 
+        SetZIndexOfMenus(menus);
+
         await transitionButton.TransitionNode.PerformTransition(menus.From.Menu, menus.To.Menu, menus.From.Button, menus.To.Button);
 
         CleanupMenuNodes(transitionButton.TransitionType, menus);
@@ -108,6 +94,16 @@ public partial class MenuController : CanvasLayer
 
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
         _isPerformingTransition = false;
+    }
+
+    /// <summary>
+    /// Making sure MenuFrom and MenuTo have the TranslucentScreen (ZIndex=2) between them
+    /// </summary>
+    /// <param name="menus"></param>
+    private static void SetZIndexOfMenus((StackMenu From, StackMenu To) menus)
+    {
+        menus.From.Menu.ZIndex = 1;
+        menus.To.Menu.ZIndex = 3;
     }
 
     private void SetTransitionButtonToCurrentMenu(TransitionButton transitionButton)

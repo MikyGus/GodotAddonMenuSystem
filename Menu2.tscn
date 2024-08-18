@@ -106,8 +106,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_ltv4y")
 MoveDirection = 3
-TransitionTime = 2.0
-TransitionType = 4
+TransitionType = 6
 
 [node name="Button4" type="Button" parent="."]
 layout_mode = 0

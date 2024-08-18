@@ -8,6 +8,7 @@ public partial class init : EditorPlugin
     private const string TransitionButton = "TransitionButton";
     private const string QuitGame = "QuitGameTransitionOption";
     private const string PauseGame = "PauseGameTransitionOption";
+    private const string TranslucentScreen = "TranslucentScreenTransitionOption";
     private const string TestPrintOption = "TestPrintOption";
 
     public override void _EnterTree()
@@ -37,12 +38,15 @@ public partial class init : EditorPlugin
         Texture2D pauseOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/hourglass_empty_30dp.svg");
         AddCustomType(PauseGame, Constants.NODE_CONTROL, pauseOption, pauseOptionIcon);
 
+        Script translucentOption = GD.Load<Script>($"{Constants.BASE_PATH}TransitionOptions/TranslucentScreenTransitionOption.cs");
+        Texture2D translucentOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/blur_on_30dp.svg");
+        AddCustomType(TranslucentScreen, Constants.NODE_CONTROL, translucentOption, translucentOptionIcon);
+
         Script testOption = GD.Load<Script>($"{Constants.BASE_PATH}TransitionOptions/TestPrintTransitionOption.cs");
         Texture2D testOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/experiment_30dp.svg");
         AddCustomType(TestPrintOption, Constants.NODE_CONTROL, testOption, testOptionIcon);
 
-
-        AddAutoloadSingleton("MenuController", $"{Constants.BASE_PATH}MenuController.cs");
+        AddAutoloadSingleton("MenuController", $"{Constants.BASE_PATH}MenuController.tscn");
     }
 
     public override void _ExitTree()
@@ -53,6 +57,7 @@ public partial class init : EditorPlugin
         RemoveCustomType("FadeTransition");
         RemoveCustomType(QuitGame);
         RemoveCustomType(PauseGame);
+        RemoveCustomType(TranslucentScreen);
         RemoveCustomType(TestPrintOption);
         RemoveAutoloadSingleton("MenuController");
     }
