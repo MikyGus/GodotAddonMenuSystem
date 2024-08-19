@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwv5u40gmm567"]
+[gd_scene load_steps=11 format=3 uid="uid://dwv5u40gmm567"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_ck3xo"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="2_xoi08"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="3_3clht"]
 [ext_resource type="Script" path="res://Exit.cs" id="4_htm1p"]
+[ext_resource type="Script" path="res://addons/menusystem/DisableOption/MenuDisableOption.cs" id="5_vynii"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/PauseGameTransitionOption.cs" id="5_w730e"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/TranslucentScreenTransitionOption.cs" id="6_euw8w"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/QuitGameTransitionOption.cs" id="6_ry6ak"]
@@ -63,6 +64,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_l7px6")
 WhenToPerformAction = 2
+
+[node name="DisableMenuOption" type="Control" parent="TransitionTextureButton/TransitionButton5"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_vynii")
 
 [node name="PauseButton" type="TextureButton" parent="."]
 layout_mode = 0

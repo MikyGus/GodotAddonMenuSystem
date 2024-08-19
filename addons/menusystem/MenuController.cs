@@ -1,7 +1,10 @@
 ﻿using Godot;
+using MenuControl.addons.MenuControl.Helpers;
 using MenySystem.addons.menusystem.Buttons;
 using MenySystem.addons.menusystem.PropertyTypes;
+using MenySystem.addons.menusystem.TransitionOptions;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MenySystem.addons.menusystem;
@@ -82,6 +85,9 @@ public partial class MenuController : CanvasLayer
             _ => (DefaultStackMenu, DefaultStackMenu)
         };
 
+        menus.From.Menu = PerformDisableMenuOption(menus.From);
+        menus.To.Menu = PerformDisableMenuOption(menus.To);
+
         SetZIndexOfMenus(menus);
 
         await transitionButton.TransitionNode.PerformTransition(menus.From.Menu, menus.To.Menu, menus.From.Button, menus.To.Button);
@@ -97,6 +103,22 @@ public partial class MenuController : CanvasLayer
     }
 
     /// <summary>
+    /// Activate the ability to disable the menu with the 'MenuDisableOption' node
+    /// </summary>
+    /// <param name="menuStack"></param>
+    /// <returns>The Menu-Control or the Mock-Control from MenuDisabler</returns>
+    private Control PerformDisableMenuOption(StackMenu menuStack)
+    {
+        MenuDisableOption menuDisable = menuStack.Button?.GetAllChildren<MenuDisableOption>().FirstOrDefault();
+        if (menuDisable is null)
+        {
+            return menuStack.Menu;
+        }
+        Control newMenu = menuDisable.DisableMenu(menuStack.Menu);
+        return newMenu;
+    }
+
+    /// <summary>
     /// Making sure MenuFrom and MenuTo have the TranslucentScreen (ZIndex=2) between them
     /// </summary>
     /// <param name="menus"></param>
@@ -106,6 +128,10 @@ public partial class MenuController : CanvasLayer
         menus.To.Menu.ZIndex = 3;
     }
 
+    /// <summary>
+    /// Make sure the transitionButton, the one attached to the button the user clicked, is linked to the current menu.
+    /// </summary>
+    /// <param name="transitionButton"></param>
     private void SetTransitionButtonToCurrentMenu(TransitionButton transitionButton)
     {
         StackMenu currentStackMenu = _menuStack.Pop();
@@ -113,6 +139,9 @@ public partial class MenuController : CanvasLayer
         _menuStack.Push(currentStackMenu);
     }
 
+    /// <summary>
+    /// In debug we print the current stack
+    /// </summary>
     private void StackDebug()
     {
         GD.Print("-------------STACK-START--------");
@@ -137,13 +166,25 @@ public partial class MenuController : CanvasLayer
         _menuStack.Push(stackMenu);
     }
 
+    /// <summary>
+    /// Add the menu (Control) to the MenuControl-node. But only if it not already is attached to the tree.
+    /// </summary>
+    /// <param name="menu"></param>
+    private void MenuControlAddChild(Control menu)
+    {
+        if (menu.IsInsideTree() == false)
+        {
+            _menuControl.AddChild(menu);
+        }
+    }
+
     private (StackMenu from, StackMenu to) PushToMenuStack(PackedScene transitionTo)
     {
         StackMenu from = _menuStack.Count > 0 ? _menuStack.Peek() : DefaultStackMenu;
         Control toMenu = transitionTo.Instantiate<Control>();
         StackMenu to = new StackMenu() { Menu = toMenu };
         _menuStack.Push(to);
-        _menuControl.AddChild(to.Menu);
+        MenuControlAddChild(to.Menu);
         return (from, to);
     }
 
@@ -154,7 +195,7 @@ public partial class MenuController : CanvasLayer
         if (_menuStack.Count > 0)
         {
             to = _menuStack.Peek();
-            _menuControl.AddChild(to.Menu);
+            MenuControlAddChild(to.Menu);
         }
         else
         {
@@ -170,7 +211,7 @@ public partial class MenuController : CanvasLayer
         Control toMenu = transitionTo.Instantiate<Control>();
         StackMenu to = new() { Menu = toMenu };
         _menuStack.Push(to);
-        _menuControl.AddChild(to.Menu);
+        MenuControlAddChild(to.Menu);
         return (from, to);
     }
 

@@ -31,6 +31,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_kub6p")
+MoveDirection = 1
 
 [node name="TestPrintOption" type="Control" parent="Button/TransitionButton"]
 anchors_preset = 0
