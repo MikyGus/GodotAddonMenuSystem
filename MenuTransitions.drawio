@@ -312,7 +312,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="CplMbJVwtwVQbg_kabnD" name="TransitionOptions">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -428,6 +428,12 @@
         </mxCell>
         <mxCell id="yrKa3n3HxP-yplcQjULw-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.594;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="yrKa3n3HxP-yplcQjULw-2" target="yrKa3n3HxP-yplcQjULw-40">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ef30CKrkdZEWUc9oDkuD-1" value="&lt;b&gt;Green&lt;/b&gt;: #75FB4C" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="720" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ef30CKrkdZEWUc9oDkuD-2" value="&lt;b&gt;Red&lt;/b&gt;: #EA3323" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="115" y="760" width="100" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -667,7 +673,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="WZIIO_JZExYn0QdGctAv" name="TransitionOptionSetUnset">
-    <mxGraphModel dx="1195" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -742,6 +748,18 @@
           <mxGeometry x="630" y="515" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="R_KTMWfppF2SagQqjste-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.812;entryY=0.296;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="R_KTMWfppF2SagQqjste-17" target="R_KTMWfppF2SagQqjste-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q9yzNb0Gva38akreIkiB-1" value="AfterPageToTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="610" y="220" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="q9yzNb0Gva38akreIkiB-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.277;entryY=0.304;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="q9yzNb0Gva38akreIkiB-1" target="R_KTMWfppF2SagQqjste-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q9yzNb0Gva38akreIkiB-3" value="AfterPageFromTransition" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="610" y="361" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="q9yzNb0Gva38akreIkiB-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.534;entryY=0.304;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="q9yzNb0Gva38akreIkiB-3" target="R_KTMWfppF2SagQqjste-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
