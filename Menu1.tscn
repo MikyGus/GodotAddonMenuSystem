@@ -80,20 +80,11 @@ offset_bottom = 40.0
 script = ExtResource("1_ck3xo")
 TransitionToPath = "res://Menu2.tscn"
 
-[node name="MoveTransition" type="Control" parent="PauseButton/TransitionButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_3clht")
-MoveDirection = 2
-TransitionType = 7
-
 [node name="TranslucentScreenTransitionOption" type="Control" parent="PauseButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("6_euw8w")
-FadeTime = 6.0
 WhenToPerformAction = 0
 
 [node name="PauseGameTransitionOption" type="Control" parent="PauseButton/TransitionButton"]
@@ -102,6 +93,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_w730e")
 WhenToPerformAction = 0
+
+[node name="FadeTransition" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_xoi08")
 
 [node name="Label" type="Label" parent="PauseButton"]
 layout_mode = 1
