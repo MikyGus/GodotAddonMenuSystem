@@ -3,6 +3,8 @@
 With nodes added to a normal button in Godot (BaseButton) we can easily create 
 transitions between different menus. 
 
+This addon for Godot is written i C#
+
 The demofiles referred to in this documentation can be found in the 
 `documentation/scenes` folder.
 
@@ -47,16 +49,27 @@ Here you enter the path to the menu to transition to.
 
 ### Transitions
 There are a few built in transitions. 
-- InstantTransition (Instantly transition to the new menu)
-- MoveTransition )
-- FadeTransition (The screen fades to black, and then fades back to reveal the new menu)
+- InstantTransition
+- MoveTransition
+- FadeTransition
+
+#### InstantTransition
+Instantly transition to the new menu
+
+#### FadeTransition
+The screen fades to black, and then fades back to reveal the new menu
+![AddTransitionButton](Documentation/Images/fadetransition_settings.png)
+- Fade Type: Indicates if you want to fade out, fade in or both. 
+- Transition Time: The time, in seconds, ___each___ fade-transition takes. 
 
 #### MoveTransition
 The menus moves in a set direction in/out of the screen
+
 ![AddTransitionButton](Documentation/Images/movetransition_settings.png)
 - Move Direction: The  direction both menus move over the screen
 - Transition Time: The time, in seconds, the full transition takes
 - Transition Type and Ease Type: Refer to Godot Tweening CheatSheet
+
 https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp
 
 ### Have MainMenu display at start
@@ -79,6 +92,9 @@ MenuController.Instance.SetInitialMenu(packedScene);
 When you now press `Settings` the current menu moves left of the screen. And at the same
 time the `Settings` menu enters from the right. (moving left)
 
+	Note: AboutButton have the same nodes and settings, apart from 
+	"Transition to Path" that should point to the About-scene.
+
 ### Transition back to the main menu
 After we moved to the Settings-menu, `MenuController` have a stack of Menus:
 - Settings (Currently active)
@@ -99,8 +115,9 @@ the top menu (Settings menu) and makes the next menu active (MainMenu).
 Note:
 	
 	The most important setting is the Transition Type to be set to Pop
-	
 
+	The About menu is the same as Settings menu
+	
 ### Fade out and exit
 
 When we press `Exit` button we want to fade out and exit the game.
