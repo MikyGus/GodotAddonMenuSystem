@@ -42,20 +42,22 @@ offset_bottom = 310.0
 texture_normal = ExtResource("7_lwre5")
 
 [node name="TransitionButton5" type="Control" parent="TransitionTextureButton"]
-anchors_preset = 0
-offset_left = -183.0
-offset_top = -182.0
-offset_right = -143.0
-offset_bottom = -142.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ck3xo")
 TransitionToPath = "res://Menu1v1.tscn"
 
 [node name="MoveTransition" type="Control" parent="TransitionTextureButton/TransitionButton5"]
-anchors_preset = 0
-offset_left = 183.0
-offset_top = 182.0
-offset_right = 223.0
-offset_bottom = 222.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_3clht")
 
 [node name="TestPrintOption" type="Control" parent="TransitionTextureButton/TransitionButton5"]
@@ -106,6 +108,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_xoi08")
+
+[node name="DisableMenuOption" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_vynii")
 
 [node name="Label" type="Label" parent="PauseButton"]
 layout_mode = 1

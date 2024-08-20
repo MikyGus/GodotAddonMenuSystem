@@ -85,10 +85,11 @@ public partial class MenuController : CanvasLayer
             _ => (DefaultStackMenu, DefaultStackMenu)
         };
 
+        RearrangeOrderOfMenus(menus);
+
         menus.From.Menu = PerformDisableMenuOption(menus.From);
         menus.To.Menu = PerformDisableMenuOption(menus.To);
 
-        SetZIndexOfMenus(menus);
 
         await transitionButton.TransitionNode.PerformTransition(menus.From.Menu, menus.To.Menu, menus.From.Button, menus.To.Button);
 
@@ -119,13 +120,19 @@ public partial class MenuController : CanvasLayer
     }
 
     /// <summary>
-    /// Making sure MenuFrom and MenuTo have the TranslucentScreen (ZIndex=2) between them
+    /// Making sure MenuFrom and MenuTo have the TranslucentScreen between them
     /// </summary>
     /// <param name="menus"></param>
-    private static void SetZIndexOfMenus((StackMenu From, StackMenu To) menus)
+    private void RearrangeOrderOfMenus((StackMenu From, StackMenu To) menus)
     {
-        menus.From.Menu.ZIndex = 1;
-        menus.To.Menu.ZIndex = 3;
+        if (menus.From.Menu.IsInsideTree())
+        {
+            _menuControl.MoveChild(menus.From.Menu, 0);
+        }
+        if (menus.To.Menu.IsInsideTree())
+        {
+            _menuControl.MoveChild(menus.To.Menu, -1);
+        }
     }
 
     /// <summary>
@@ -134,9 +141,12 @@ public partial class MenuController : CanvasLayer
     /// <param name="transitionButton"></param>
     private void SetTransitionButtonToCurrentMenu(TransitionButton transitionButton)
     {
-        StackMenu currentStackMenu = _menuStack.Pop();
-        currentStackMenu.Button = transitionButton;
-        _menuStack.Push(currentStackMenu);
+        if (_menuStack.Count > 0)
+        {
+            StackMenu currentStackMenu = _menuStack.Pop();
+            currentStackMenu.Button = transitionButton;
+            _menuStack.Push(currentStackMenu);
+        }
     }
 
     /// <summary>

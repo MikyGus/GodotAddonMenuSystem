@@ -15,8 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TranslucentScreen" parent="Menus" instance=ExtResource("2_dj1eb")]
-z_index = 2
 layout_mode = 1
 
 [node name="CoverScreen" parent="." instance=ExtResource("2_dj1eb")]
-z_index = 4
