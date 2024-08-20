@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://smduiajn7k1u"]
+[gd_scene load_steps=3 format=3 uid="uid://smduiajn7k1u"]
+
+[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_2g2yd"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_hx8gb"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -32,3 +35,17 @@ offset_right = 35.5
 offset_bottom = 163.0
 grow_horizontal = 2
 text = "Go Back"
+
+[node name="TransitionButton" type="Control" parent="GoBackButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2g2yd")
+TransitionType = 1
+
+[node name="MoveTransition" type="Control" parent="GoBackButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_hx8gb")
+MoveDirection = 3

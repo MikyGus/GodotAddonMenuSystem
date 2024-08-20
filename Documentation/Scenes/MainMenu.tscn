@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b47pwyxdllowe"]
+[gd_scene load_steps=4 format=3 uid="uid://b47pwyxdllowe"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_vvxwr"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_70hnm"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="3_ero31"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -39,6 +41,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_vvxwr")
+TransitionToPath = "res://Documentation/Scenes/Settings.tscn"
+
+[node name="MoveTransition" type="Control" parent="VBoxContainer/SettingsButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_70hnm")
+MoveDirection = 2
 
 [node name="AboutButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -47,3 +57,16 @@ text = "About	"
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="TransitionButton" type="Control" parent="VBoxContainer/ExitButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vvxwr")
+
+[node name="FadeTransition" type="Control" parent="VBoxContainer/ExitButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ero31")
+FadeType = 2
