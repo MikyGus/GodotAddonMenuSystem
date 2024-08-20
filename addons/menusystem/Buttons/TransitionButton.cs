@@ -45,16 +45,19 @@ public partial class TransitionButton : Control
 
         TransitionNode = GetNodes.GetAllChildren<Transition>(this).FirstOrDefault();
 
-        List<string> errors = ValidateNode();
-        if (errors.Count > 0)
+        if (Engine.IsEditorHint() == false)
         {
-            GD.PushError($"{GetPath()}: Parameters not valid: {string.Join(", ", errors)}");
-            return;
-        }
-        if (GetParent() is BaseButton)
-        {
-            BaseButton parent = GetParent<BaseButton>();
-            parent.Pressed += OnButtonPressed;
+            List<string> errors = ValidateNode();
+            if (errors.Count > 0)
+            {
+                GD.PushError($"{GetPath()}: Parameters not valid: {string.Join(", ", errors)}");
+                return;
+            }
+            if (GetParent() is BaseButton)
+            {
+                BaseButton parent = GetParent<BaseButton>();
+                parent.Pressed += OnButtonPressed;
+            }
         }
     }
 

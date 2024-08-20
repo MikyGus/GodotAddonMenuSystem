@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtx2ld0gkkbgb"]
+
+[ext_resource type="StyleBox" uid="uid://d1e88kclgcohb" path="res://Documentation/Scenes/LabelHudStyle.tres" id="1_a4c4u"]
+[ext_resource type="Texture2D" uid="uid://cu1x4u58iwwxr" path="res://icon.svg" id="2_v5but"]
+
+[node name="GamePlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -15.5
+offset_right = 203.0
+offset_bottom = 15.5
+grow_vertical = 2
+text = "PAUSE GAME"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 22.0
+offset_right = 371.0
+offset_bottom = 97.0
+theme_override_colors/font_outline_color = Color(0.051741, 0.17398, 0.167936, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("1_a4c4u")
+text = "Score: 123456"
+
+[node name="Players" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -141.0
+offset_right = 268.0
+offset_bottom = -13.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Players"]
+self_modulate = Color(2, 2, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_v5but")
+
+[node name="Label" type="Label" parent="Players/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 98.0
+offset_right = -39.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("1_a4c4u")
+text = "Equip"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Players"]
+self_modulate = Color(2, 0.945098, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_v5but")
+
+[node name="Label" type="Label" parent="Players/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 98.0
+offset_right = -39.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("1_a4c4u")
+text = "Equip"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Players"]
+self_modulate = Color(0.933333, 0.945098, 0.278431, 1)
+layout_mode = 2
+texture = ExtResource("2_v5but")
+
+[node name="Label" type="Label" parent="Players/TextureRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 98.0
+offset_right = -39.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("1_a4c4u")
+text = "Equip"
+horizontal_alignment = 1
+vertical_alignment = 1

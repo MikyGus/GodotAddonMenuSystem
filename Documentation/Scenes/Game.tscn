@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://qa34jvu8nhnd"]
+
+[ext_resource type="Script" path="res://Documentation/Scenes/Game.cs" id="1_ha24v"]
+
+[sub_resource type="Gradient" id="Gradient_421e7"]
+offsets = PackedFloat32Array(0.534722, 1)
+colors = PackedColorArray(0, 0.866667, 0, 1, 0.317647, 0.282353, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p4d8u"]
+gradient = SubResource("Gradient_421e7")
+
+[node name="Game" type="Node"]
+script = ExtResource("1_ha24v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_p4d8u")
