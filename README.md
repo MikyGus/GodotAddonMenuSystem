@@ -8,6 +8,9 @@ This addon for Godot is written i C#
 The demofiles referred to in this documentation can be found in the 
 `documentation/scenes` folder.
 
+After some short descriptions of some of the nodes, I will walk you through building
+up a gamemenu step by step. 
+
 ## Main concepts 
 Start by building a main menu as you normally would. With Control-nodes and Button-nodes. 
 
@@ -139,3 +142,93 @@ When we press `Exit` button we want to fade out and exit the game.
 When we now run the game and press the `ExitButton`, the screen will fade to black and
 then quit the application. 
 
+### Fade out and in to GamePlay
+To fade out and in to a new scene is nothing new at this point. So let's do it.
+
+1. To the `PlayButton`, add a `TransitionButton` as a child
+1. Have the transition-type set to `Switch`
+1. And set the `Transition to path` to point to the GamePlay scene
+![AddTransitionButton](Documentation/Images/transitionbutton_switch_sceneset.png)
+1. As a child to `TransitionButton` add a `FadeTransition`-node
+![AddTransitionButton](Documentation/Images/playbutton_fadetransition.png)
+1. Leave settings at default values
+
+### Start a GameLevel in the background 
+When we press `PlayButton` we want to have a game level loaded alongside the menu
+part `GamePlay.tscn`. 
+
+1. Add script to the `PlayButton`
+1. Add the following to the `PlayButton`-script
+    ```csharp
+    public partial class PlayButton : Button
+    {
+        Transition _transitionNode;
+
+        public override void _Ready()
+        {
+            _transitionNode = this.GetAllChildren<TransitionButton>().FirstOrDefault().TransitionNode;
+            _transitionNode.OnPostPageFromTransition += LoadGameLevel;
+        }
+
+        public override void _ExitTree()
+        {
+            _transitionNode.OnPostPageFromTransition -= LoadGameLevel;
+        }
+
+        private void LoadGameLevel(Control control)
+        {
+            GameEvents.StartGame();
+        }
+    }
+    ```
+    The `GetAllChildren` method is part of the addon. The node you want is the 
+`Transition`-node  (InstantTransition, MoveTransition, FadeTransition, etc).
+`TransitionButton` have a reference to the node, `TransitionNode`. 
+The `Transition`-node have events we want to use.
+1. Create a new script with the name: `GameEvents.cs` with the following content
+    ```csharp
+    public static class GameEvents
+    {
+        public static event Action OnGameLevelStart;
+        public static event Action OnGameLevelEnd;
+        public static event Action OnGamePaused;
+        public static event Action OnGameResumed;
+
+        public static void StartGame() => OnGameLevelStart?.Invoke();
+        public static void EndGame() => OnGameLevelEnd?.Invoke();
+        public static void PauseGame() => OnGamePaused?.Invoke();
+        public static void ResumeGame() => OnGameResumed?.Invoke();
+    }
+    ```
+1. Edit the script on the root node of `Game.tscn` (This is our startscene).
+    ```csharp
+    public partial class Game : Node
+    {
+        public override void _Ready()
+        {
+            // Set startscene 
+            PackedScene packedScene = GD.Load<PackedScene>("res://Documentation/Scenes/MainMenu.tscn");
+            MenuController.Instance.SetInitialMenu(packedScene);
+
+            // Subscribe to when the GameLevelStart
+            GameEvents.OnGameLevelStart += GameStart;
+        }
+
+        public override void _ExitTree()
+        {
+            // UnSubscribe to when the GameLevelStart
+            GameEvents.OnGameLevelStart -= GameStart;
+        }
+
+        private void GameStart()
+        {
+            PackedScene gameLevel = GD.Load<PackedScene>("res://Documentation/Scenes/GameLevel.tscn");
+            Node2D gameInst = gameLevel.Instantiate<Node2D>();
+            AddChild(gameInst);
+        }
+    }
+    ```
+
+
+
+### Fade back to MainMenu from GamePlay

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://r5tx1tvhl2gd"]
+
+[ext_resource type="PackedScene" uid="uid://d26xxxpy7inuj" path="res://Documentation/Scenes/Player.tscn" id="1_88kmm"]
+
+[sub_resource type="Gradient" id="Gradient_wq5tj"]
+offsets = PackedFloat32Array(0.0794702, 0.86755)
+colors = PackedColorArray(0, 0.886275, 0, 1, 0.501924, 0.390004, 0.941909, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jcp8m"]
+gradient = SubResource("Gradient_wq5tj")
+fill_from = Vector2(0.495726, 0.837607)
+fill_to = Vector2(0.448718, 0.034188)
+
+[node name="GameLevel" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(581, 333.5)
+scale = Vector2(18.5, 10.6719)
+texture = SubResource("GradientTexture2D_jcp8m")
+
+[node name="Player" parent="." instance=ExtResource("1_88kmm")]

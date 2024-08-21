@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d26xxxpy7inuj"]
+
+[ext_resource type="Texture2D" uid="uid://cu1x4u58iwwxr" path="res://icon.svg" id="1_p7lux"]
+[ext_resource type="Script" path="res://Player.cs" id="2_eoxu0"]
+
+[node name="Player" type="Sprite2D"]
+modulate = Color(0.886329, 0.393775, 0.41047, 1)
+position = Vector2(108, 286)
+texture = ExtResource("1_p7lux")
+script = ExtResource("2_eoxu0")

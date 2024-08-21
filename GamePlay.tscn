@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgkui68qbvkae"]
+[gd_scene load_steps=5 format=3 uid="uid://cgkui68qbvkae"]
 
 [ext_resource type="Script" path="res://GamePlay.cs" id="1_spde2"]
-[ext_resource type="Texture2D" uid="uid://cu1x4u58iwwxr" path="res://icon.svg" id="1_v78jm"]
-[ext_resource type="Script" path="res://Player.cs" id="2_k5q6v"]
+[ext_resource type="PackedScene" uid="uid://d26xxxpy7inuj" path="res://Documentation/Scenes/Player.tscn" id="2_7121l"]
 
 [sub_resource type="Gradient" id="Gradient_pphi1"]
 colors = PackedColorArray(0, 0.866667, 0, 1, 0.169909, 0.310125, 1, 1)
@@ -13,13 +12,9 @@ gradient = SubResource("Gradient_pphi1")
 [node name="GamePlay" type="Node2D"]
 script = ExtResource("1_spde2")
 
-[node name="TextureRect" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(604.5, 346.25)
 scale = Vector2(18.8281, 10.8984)
 texture = SubResource("GradientTexture2D_lv2ql")
 
-[node name="Player" type="Sprite2D" parent="."]
-modulate = Color(0.886329, 0.393775, 0.41047, 1)
-position = Vector2(108, 286)
-texture = ExtResource("1_v78jm")
-script = ExtResource("2_k5q6v")
+[node name="Player" parent="." instance=ExtResource("2_7121l")]
