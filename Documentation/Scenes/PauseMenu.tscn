@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b47pwyxdllowe"]
+[gd_scene load_steps=4 format=3 uid="uid://bm73be26b6oc7"]
 
-[ext_resource type="Script" path="res://Documentation/Scenes/PlayButton.cs" id="1_ju2fm"]
-[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_vvxwr"]
-[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_70hnm"]
-[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="3_ero31"]
-[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/QuitGameTransitionOption.cs" id="4_6k7uf"]
+[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="2_5inuy"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="3_8qt5v"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="4_tjk71"]
 
-[node name="MainMenu" type="Control"]
+[node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,24 +28,23 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
-script = ExtResource("1_ju2fm")
+text = "Resume"
 
-[node name="TransitionButton" type="Control" parent="VBoxContainer/PlayButton"]
+[node name="TransitionButton" type="Control" parent="VBoxContainer/ResumeButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_vvxwr")
-TransitionType = 2
-TransitionToPath = "res://Documentation/Scenes/GamePlay.tscn"
+script = ExtResource("2_5inuy")
+TransitionType = 1
 
-[node name="FadeTransition" type="Control" parent="VBoxContainer/PlayButton/TransitionButton"]
+[node name="MoveTransition" type="Control" parent="VBoxContainer/ResumeButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_ero31")
+script = ExtResource("4_tjk71")
+MoveDirection = 3
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -57,14 +54,14 @@ text = "Settings"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_vvxwr")
+script = ExtResource("2_5inuy")
 TransitionToPath = "res://Documentation/Scenes/Settings.tscn"
 
 [node name="MoveTransition" type="Control" parent="VBoxContainer/SettingsButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_70hnm")
+script = ExtResource("4_tjk71")
 MoveDirection = 2
 
 [node name="AboutButton" type="Button" parent="VBoxContainer"]
@@ -75,48 +72,42 @@ text = "About	"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_vvxwr")
+script = ExtResource("2_5inuy")
 TransitionToPath = "res://Documentation/Scenes/About.tscn"
 
 [node name="MoveTransition" type="Control" parent="VBoxContainer/AboutButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_70hnm")
+script = ExtResource("4_tjk71")
 MoveDirection = 2
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitToMainButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Exit"
+text = "Quit To Main Menu"
 
-[node name="TransitionButton" type="Control" parent="VBoxContainer/ExitButton"]
+[node name="TransitionButton" type="Control" parent="VBoxContainer/QuitToMainButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_vvxwr")
+script = ExtResource("2_5inuy")
 
-[node name="FadeTransition" type="Control" parent="VBoxContainer/ExitButton/TransitionButton"]
+[node name="FadeTransition" type="Control" parent="VBoxContainer/QuitToMainButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_ero31")
+script = ExtResource("3_8qt5v")
 FadeType = 2
-
-[node name="QuitGameTransitionOption" type="Control" parent="VBoxContainer/ExitButton/TransitionButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_6k7uf")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -148.0
-offset_top = 84.0
-offset_right = 148.0
-offset_bottom = 153.0
+offset_left = -20.0
+offset_top = 92.0
+offset_right = 20.0
+offset_bottom = 115.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
-text = "MAIN MENU"
+text = "Game is Paused"

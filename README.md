@@ -75,14 +75,14 @@ The menus moves in a set direction in/out of the screen
 
 https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp
 
-### Have MainMenu display at start
+## Have MainMenu display at start
 In the `_Ready()` of your start scene:
 ```csharp
 PackedScene packedScene = GD.Load<PackedScene>("res://Documentation/Scenes/MainMenu.tscn");
 MenuController.Instance.SetInitialMenu(packedScene);
 ```
 
-### Transition from the main menu to settings.
+## Transition from the main menu to settings.
 1. To the `Exit-button`, add a `TransitionButton` as a child.
 1. Have the transition-type remain at `Push`
 1. And set the `Transition to path` to point to the settings scene
@@ -98,7 +98,7 @@ time the `Settings` menu enters from the right. (moving left)
 	Note: AboutButton have the same nodes and settings, apart from 
 	"Transition to Path" that should point to the About-scene.
 
-### Transition back to the main menu
+## Transition back to the main menu
 After we moved to the Settings-menu, `MenuController` have a stack of Menus:
 - Settings (Currently active)
 - MainMenu 
@@ -121,7 +121,7 @@ Note:
 
 	The About menu is the same as Settings menu
 	
-### Fade out and exit
+## Fade out and exit
 
 When we press `Exit` button we want to fade out and exit the game.
 
@@ -142,7 +142,7 @@ When we press `Exit` button we want to fade out and exit the game.
 When we now run the game and press the `ExitButton`, the screen will fade to black and
 then quit the application. 
 
-### Fade out and in to GamePlay
+## Fade out and in to GamePlay
 To fade out and in to a new scene is nothing new at this point. So let's do it.
 
 1. To the `PlayButton`, add a `TransitionButton` as a child
@@ -228,7 +228,67 @@ The `Transition`-node have events we want to use.
         }
     }
     ```
+The game now launches at the same time as `GamePlay` menu (HUD)
 
+## Fade back to MainMenu from GamePlay
+When the player presses the `PauseButton` we want to transition to 
+the `PauseMenu`. We will start setting up a simple transition to the 
+`PauseMenu`.
 
+1. To the `PauseButton`, add a `TransitionButton` as a child
+1. Have the transition-type set to its defaul (`Push`)
+1. And set the `Transition to path` to point to the Pause scene
+![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
+1. As a child to `TransitionButton` add a `MoveTransition`-node
+![AddTransitionButton](Documentation/Images/pausebutton_nodetree_basic.png)
+1. Set `Move Direction` to `Left`
 
-### Fade back to MainMenu from GamePlay
+We now have a basic transition. But this does not feel right, there are several
+issues I have with this. Let's take care of them one by one.
+
+### Game is not paused
+When we press the `Pause Game` button we expect the game to be paused.
+1. Add a `PauseGameTransitionOption` node as a child to `TransitionButton`
+1. Set `When To Perform Action` to `BeforeAllTransition`
+This pauses the game. 
+
+### HUD should stay in place
+It feels odd to have the HUD move when we pause. 
+1. Add a `DisableMenuOption` node as a child to `TransitionButton`
+This makes the active menu (HUD in this case) to ignore the transition-movements. 
+
+Info: 
+    
+    Although the GamePlay menu is visible, its buttons are not clickable.
+
+### Fade the background 
+To indicate that the background (the game scene) is not active we want to fade
+it towards black with some translucency remaining.
+1. Add a `TranslucentScreenTransitionOption` node as a child to `TransitionButton`
+1. Set `Translucent Level` to 0.8. (This is the target alpha value)
+1. Set `When To Perform Action` to `BeforeAllTransition`
+
+After adding these three extra nodes, the scene-tree now looks like this.
+![AddTransitionButton](Documentation/Images/pausebutton_nodetree_extra.png)
+
+## Resume the game
+When we press the `ResumeButton` we want the game to resume.
+
+This is actually very easy. 
+1. To the `ResumeButton`, add a `TransitionButton` as a child
+1. Have the transition-type set to `Pop`
+1. Add a `MoveTransition` node as a child to `TransitionButton`
+1. Set `Move Direction` to `Right`
+
+Note:
+
+    The important part here is TransitionType in TransitionButton 
+    is set to Pop. MenuController needs to know we are returning to GamePlay.
+    
+## Settings and About
+In the pause menu we add the exact same `TransitionButton` nodes with the 
+same settings as these buttons have in the `MainMenu`. 
+
+When you press `Settings` you end up in the `Settings`-menu, and whithout 
+changing the `Settings`-menu you return to the `Pause`-menu when pressing
+the backbutton. 

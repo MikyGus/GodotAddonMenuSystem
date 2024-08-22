@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtx2ld0gkkbgb"]
+[gd_scene load_steps=8 format=3 uid="uid://dtx2ld0gkkbgb"]
 
 [ext_resource type="StyleBox" uid="uid://d1e88kclgcohb" path="res://Documentation/Scenes/LabelHudStyle.tres" id="1_a4c4u"]
+[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_dol28"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_jvt8x"]
 [ext_resource type="Texture2D" uid="uid://cu1x4u58iwwxr" path="res://icon.svg" id="2_v5but"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/PauseGameTransitionOption.cs" id="3_mmj2w"]
+[ext_resource type="Script" path="res://addons/menusystem/DisableOption/MenuDisableOption.cs" id="4_kj36u"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/TranslucentScreenTransitionOption.cs" id="5_7pdm5"]
 
 [node name="GamePlay" type="Control"]
 layout_mode = 3
@@ -22,6 +27,41 @@ offset_right = 54.5
 offset_bottom = 81.0
 grow_horizontal = 2
 text = "PAUSE GAME"
+
+[node name="TransitionButton" type="Control" parent="PauseButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dol28")
+TransitionToPath = "res://Documentation/Scenes/PauseMenu.tscn"
+
+[node name="MoveTransition" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jvt8x")
+MoveDirection = 2
+
+[node name="PauseGameTransitionOption" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_mmj2w")
+WhenToPerformAction = 0
+
+[node name="DisableMenuOption" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_kj36u")
+
+[node name="TranslucentScreenTransitionOption" type="Control" parent="PauseButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_7pdm5")
+TranslucentLevel = 0.8
+WhenToPerformAction = 0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
