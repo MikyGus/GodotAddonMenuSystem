@@ -17,7 +17,7 @@ Start by building a main menu as you normally would. With Control-nodes and Butt
 ![BasicTreeOfButtons](Documentation/Images/basic_tree_only_buttons.png)
 
 `MenySystem` uses these buttons to know when to transition by connecting to 
-the buttons `Pressed` signals. The button may be any kind of button that 
+the buttons `Pressed` signals. The button may be of any kind of button that 
 derives from `BaseButton`. `TransitonButton`, se below, gives these buttons 
 extra functionality. 
 
@@ -83,12 +83,14 @@ MenuController.Instance.SetInitialMenu(packedScene);
 ```
 
 ## Transition from the main menu to settings.
-1. To the `Exit-button`, add a `TransitionButton` as a child.
+1. To the `SettingsButton`, add a `TransitionButton` as a child.
 1. Have the transition-type remain at `Push`
 1. And set the `Transition to path` to point to the settings scene
-![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
+
+    ![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
 1. As a child to `TransitionButton` add a `MoveTransition`-node
-![AddTransitionButton](Documentation/Images/movetransition.png)
+
+    ![AddTransitionButton](Documentation/Images/movetransition.png)
 1. Set `Move direction` to `Left`
 1. Keep the default on the rest of the properties.
 
@@ -128,8 +130,10 @@ When we press `Exit` button we want to fade out and exit the game.
 1. To the `ExitButton`, add a `TransitionButton` as a child
 1. The settings of the `TransitionButton` may remain at the default
 1. As a child to `TransitionButton` add a `FadeTransition`-node
+
 	![FadeTree](Documentation/Images/fadetransition_nodetree.png)
 1. Set `Fade Type` to only `Out`
+
 	![FadeTree](Documentation/Images/fadetransition_settings.png)
 1. Leave `Transition Time` at default
 
