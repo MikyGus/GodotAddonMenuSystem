@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://b47pwyxdllowe"]
 
-[ext_resource type="Script" path="res://Documentation/Scenes/PlayButton.cs" id="1_ju2fm"]
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_vvxwr"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_70hnm"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="3_ero31"]
 [ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/QuitGameTransitionOption.cs" id="4_6k7uf"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/InvokeEventTransitionOption.cs" id="4_6mkqn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,7 +33,6 @@ alignment = 1
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Play"
-script = ExtResource("1_ju2fm")
 
 [node name="TransitionButton" type="Control" parent="VBoxContainer/PlayButton"]
 anchors_preset = 0
@@ -48,6 +47,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_ero31")
+
+[node name="InvokeEventOption" type="Control" parent="VBoxContainer/PlayButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_6mkqn")
+WhenToPerformAction = 2
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

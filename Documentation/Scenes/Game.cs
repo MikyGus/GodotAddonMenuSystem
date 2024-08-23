@@ -1,6 +1,5 @@
 using Godot;
 using MenySystem.addons.menusystem;
-using MenySystem.Documentation;
 
 public partial class Game : Node
 {
@@ -11,13 +10,13 @@ public partial class Game : Node
         MenuController.Instance.SetInitialMenu(packedScene);
 
         // Subscribe to when the GameLevelStart
-        GameEvents.OnGameLevelStart += GameStart;
+        MenuEvents.OnGameLevelStart += GameStart;
     }
 
     public override void _ExitTree()
     {
         // UnSubscribe to when the GameLevelStart
-        GameEvents.OnGameLevelStart -= GameStart;
+        MenuEvents.OnGameLevelStart -= GameStart;
     }
 
     private void GameStart()

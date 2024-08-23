@@ -1,7 +1,8 @@
 ﻿using System;
 
-namespace MenySystem.Documentation;
-public static class GameEvents
+namespace MenySystem.addons.menusystem;
+
+public static class MenuEvents
 {
     public static event Action OnGameLevelStart;
     public static event Action OnGameLevelEnd;

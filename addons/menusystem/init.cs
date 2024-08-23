@@ -11,6 +11,7 @@ public partial class init : EditorPlugin
     private const string TranslucentScreen = "TranslucentScreenTransitionOption";
     private const string TestPrintOption = "TestPrintOption";
     private const string DisableMenu = "DisableMenuOption";
+    private const string EventOption = "InvokeEventOption";
 
     public override void _EnterTree()
     {
@@ -47,6 +48,10 @@ public partial class init : EditorPlugin
         Texture2D testOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/experiment_30dp.svg");
         AddCustomType(TestPrintOption, Constants.NODE_CONTROL, testOption, testOptionIcon);
 
+        Script eventOption = GD.Load<Script>($"{Constants.BASE_PATH}TransitionOptions/InvokeEventTransitionOption.cs");
+        Texture2D eventOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/cell_tower_30dp.svg");
+        AddCustomType(EventOption, Constants.NODE_CONTROL, eventOption, eventOptionIcon);
+
         Script disableMenuOption = GD.Load<Script>($"{Constants.BASE_PATH}DisableOption/MenuDisableOption.cs");
         Texture2D disableMenuOptionIcon = GD.Load<Texture2D>($"{Constants.BASE_PATH}Art/blur_on_30dp_red.svg");
         AddCustomType(DisableMenu, Constants.NODE_CONTROL, disableMenuOption, disableMenuOptionIcon);
@@ -65,6 +70,7 @@ public partial class init : EditorPlugin
         RemoveCustomType(TranslucentScreen);
         RemoveCustomType(TestPrintOption);
         RemoveCustomType(DisableMenu);
+        RemoveCustomType(EventOption);
         RemoveAutoloadSingleton("MenuController");
     }
 }
