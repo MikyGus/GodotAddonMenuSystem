@@ -1,3 +1,3 @@
 ﻿namespace MenySystem.addons.menusystem.TransitionOptions;
 
-public enum WhenToDoAction { BeforeAllTransition, AfterAllTransition, AfterPageFromTransition, AfterPageToTransition }
+public enum WhenToDoAction { NoAction, BeforeAllTransition, AfterAllTransition, AfterPageFromTransition, AfterPageToTransition }

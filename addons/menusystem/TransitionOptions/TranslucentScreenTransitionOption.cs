@@ -9,7 +9,7 @@ public partial class TranslucentScreenTransitionOption : TransitionOption
     public float FadeTime { get; set; } = 0.5f;
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-    public override void SetAction() => MenuController.Instance.TranslucentScreen.FadeToAlpha(TranslucentLevel, FadeTime);
-    public override void UnsetAction() => MenuController.Instance.TranslucentScreen.FadeToAlpha(0, FadeTime);
+    public override void ActionOnFromMenu() => MenuController.Instance.TranslucentScreen.FadeToAlpha(TranslucentLevel, FadeTime);
+    public override void ActionOnReturnToMenu() => MenuController.Instance.TranslucentScreen.FadeToAlpha(0, FadeTime);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 }

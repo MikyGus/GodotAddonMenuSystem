@@ -7,7 +7,7 @@ public partial class InvokeEventTransitionOption : TransitionOption
     [Export]
     public EventCategories Invoke { get; set; }
 
-    public override void SetAction()
+    public override void ActionOnFromMenu()
     {
         switch (Invoke)
         {
@@ -28,5 +28,5 @@ public partial class InvokeEventTransitionOption : TransitionOption
         }
     }
 
-    public override void UnsetAction() { }
+    public override void ActionOnReturnToMenu() { }
 }

@@ -53,7 +53,8 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_6mkqn")
-WhenToPerformAction = 2
+PerformOnFromMenu = 3
+PerformOnToMenu = 0
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

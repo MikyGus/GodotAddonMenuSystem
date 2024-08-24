@@ -30,37 +30,37 @@ public abstract partial class Transition : Control
 
     protected abstract Task PerformTransition(Control transitionFrom, Control transitionTo);
 
-    private void RaiseOptionSetUnset(WhenToDoAction whenToDoActionFrom, WhenToDoAction whenToDoActionTo)
+    private void RaiseOptionSetUnset(WhenToDoAction whenToDoAction)
     {
         TransitionBttnFrom?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == whenToDoActionFrom)
-            .ForEach(x => x.SetAction());
+            .Where(x => x.WhenLeavingMenu == whenToDoAction)
+            .ForEach(x => x.ActionOnFromMenu());
         TransitionBttnTo?.GetAllChildren<TransitionOption>()
-            .Where(x => x.WhenToPerformAction == whenToDoActionTo)
-            .ForEach(x => x.UnsetAction());
+            .Where(x => x.WhenReturningToMenu == whenToDoAction)
+            .ForEach(x => x.ActionOnReturnToMenu());
     }
 
     protected void RaiseOnPostPageFromTransition(Control menu)
     {
-        RaiseOptionSetUnset(WhenToDoAction.AfterPageFromTransition, WhenToDoAction.AfterPageToTransition);
+        RaiseOptionSetUnset(WhenToDoAction.AfterPageFromTransition);
         OnPostPageFromTransition?.Invoke(menu);
     }
 
     protected void RaiseOnPostPageToTransition(Control menu)
     {
-        RaiseOptionSetUnset(WhenToDoAction.AfterPageToTransition, WhenToDoAction.AfterPageFromTransition);
+        RaiseOptionSetUnset(WhenToDoAction.AfterPageToTransition);
         OnPostPageToTransition?.Invoke(menu);
     }
 
     protected void RaiseOnPreTransition(Control menuFrom, Control menuTo)
     {
-        RaiseOptionSetUnset(WhenToDoAction.BeforeAllTransition, WhenToDoAction.AfterAllTransition);
+        RaiseOptionSetUnset(WhenToDoAction.BeforeAllTransition);
         OnPreTransition?.Invoke(menuFrom, menuTo);
     }
 
     protected void RaiseOnPostTransition(Control menuFrom, Control menuTo)
     {
-        RaiseOptionSetUnset(WhenToDoAction.AfterAllTransition, WhenToDoAction.BeforeAllTransition);
+        RaiseOptionSetUnset(WhenToDoAction.AfterAllTransition);
         OnPostTransition?.Invoke(menuFrom, menuTo);
     }
 }
