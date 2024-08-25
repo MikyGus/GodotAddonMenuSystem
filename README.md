@@ -295,16 +295,19 @@ To fade out and in to a new scene is nothing new at this point. So let's do it.
 1. To the `PlayButton`, add a `TransitionButton` as a child
 1. Have the transition-type set to `Switch`
 1. And set the `Transition to path` to point to the GamePlay scene (This is the HUD)
+
     ![AddTransitionButton](Documentation/Images/transitionbutton_switch_sceneset.png)
-1. As a child to `TransitionButton` add a `FadeTransition`-node
+2. As a child to `TransitionButton` add a `FadeTransition`-node
+
     ![AddTransitionButton](Documentation/Images/playbutton_fadetransition.png)
-1. Leave settings at default values
+3. Leave settings at default values
 
 #### Start a GameLevel in the background 
 When we press `PlayButton` we want to have a game level loaded alongside the menu
 part `GamePlay.tscn`. 
 
 1. To the `TransitionButton`, add a `InvokeEventOption` as a child
+
     ![PlayButtonNodeTree](Documentation/Images/playbutton_fadetransition_nodetree.png)
 2. On `InvokeEventOption`
    1. Set Invoke to `GameLevelStart`
