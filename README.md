@@ -305,7 +305,6 @@ When we press `PlayButton` we want to have a game level loaded alongside the men
 part `GamePlay.tscn`. 
 
 1. To the `TransitionButton`, add a `InvokeEventOption` as a child
-   
     ![PlayButtonNodeTree](Documentation/Images/playbutton_fadetransition_nodetree.png)
 2. On `InvokeEventOption`
    1. Set Invoke to `GameLevelStart`
@@ -349,9 +348,9 @@ the `PauseMenu`. We will start setting up a simple transition to the
 1. To the `PauseButton`, add a `TransitionButton` as a child
 1. Have the transition-type set to its defaul (`Push`)
 1. And set the `Transition to path` to point to the Pause scene
-![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
+    ![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
 1. As a child to `TransitionButton` add a `MoveTransition`-node
-![AddTransitionButton](Documentation/Images/pausebutton_nodetree_basic.png)
+    ![AddTransitionButton](Documentation/Images/pausebutton_nodetree_basic.png)
 1. Set `Move Direction` to `Left`
 
 We now have a basic transition. But this does not feel right, there are several
@@ -382,7 +381,7 @@ it towards black with some translucency remaining.
 2. Set `When returning to menu` to `BeforeAllTransition`
 
 After adding these three extra nodes, the scene-tree now looks like this.
-![AddTransitionButton](Documentation/Images/pausebutton_nodetree_extra.png)
+    ![AddTransitionButton](Documentation/Images/pausebutton_nodetree_extra.png)
 
 ### Resume the game
 When we press the `ResumeButton` we want the game to resume. This is actually very easy. 
