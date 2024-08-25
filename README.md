@@ -1,6 +1,18 @@
 # Menusystem addon for Godot
 
+**Create transitions between your menu-scenes with ease.**
+
+With nodes added to a normal button in Godot (BaseButton) we can easily create transitions between different menus. 
+
+This addon for Godot is written i C#
+
+The demofiles referred to in this documentation can be found in the 
+`documentation/scenes` folder.
+
+## Table of Content
 - [Menusystem addon for Godot](#menusystem-addon-for-godot)
+  - [Table of Content](#table-of-content)
+  - [Install](#install)
   - [Main concepts](#main-concepts)
     - [TransitionButton](#transitionbutton)
       - [Settings](#settings)
@@ -29,17 +41,10 @@
     - [Resume the game](#resume-the-game)
     - [Settings and About](#settings-and-about)
 
-
-With nodes added to a normal button in Godot (BaseButton) we can easily create 
-transitions between different menus. 
-
-This addon for Godot is written i C#
-
-The demofiles referred to in this documentation can be found in the 
-`documentation/scenes` folder.
-
-After some short descriptions of some of the nodes, I will walk you through building
-up a gamemenu step by step. 
+## Install
+1. Download the folder `addons/menusystem`
+2. Place it in your `addons` folder of your project
+3. Enable the plugin in `Project` -> `Project Settings...` -> `Plugins`
 
 ## Main concepts 
 When using `MenuSystem` you start by building a main menu as you normally 
