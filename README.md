@@ -350,8 +350,9 @@ the `PauseMenu`. We will start setting up a simple transition to the
 1. And set the `Transition to path` to point to the Pause scene
     ![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
 1. As a child to `TransitionButton` add a `MoveTransition`-node
+   
     ![AddTransitionButton](Documentation/Images/pausebutton_nodetree_basic.png)
-1. Set `Move Direction` to `Left`
+2. Set `Move Direction` to `Left`
 
 We now have a basic transition. But this does not feel right, there are several
 issues I have with this. Let's take care of them one by one.
@@ -381,7 +382,8 @@ it towards black with some translucency remaining.
 2. Set `When returning to menu` to `BeforeAllTransition`
 
 After adding these three extra nodes, the scene-tree now looks like this.
-    ![AddTransitionButton](Documentation/Images/pausebutton_nodetree_extra.png)
+
+![AddTransitionButton](Documentation/Images/pausebutton_nodetree_extra.png)
 
 ### Resume the game
 When we press the `ResumeButton` we want the game to resume. This is actually very easy. 
