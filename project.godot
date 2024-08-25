@@ -24,6 +24,10 @@ MenuController="*res://addons/menusystem/MenuController.tscn"
 
 project/assembly_name="MenySystem"
 
+[editor]
+
+movie_writer/movie_file="F:/GodotCode/Export/MenuSystem.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/menusystem/plugin.cfg")
