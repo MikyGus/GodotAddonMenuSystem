@@ -1,5 +1,31 @@
 # Menusystem addon for Godot
 
+- [Menusystem addon for Godot](#menusystem-addon-for-godot)
+  - [Main concepts](#main-concepts)
+    - [TransitionButton](#transitionbutton)
+      - [Settings](#settings)
+    - [Transitions](#transitions)
+      - [InstantTransition](#instanttransition)
+      - [FadeTransition](#fadetransition)
+      - [MoveTransition](#movetransition)
+    - [Option-nodes](#option-nodes)
+      - [PauseGameTransitionOption](#pausegametransitionoption)
+      - [QuitGameTransitionOption](#quitgametransitionoption)
+      - [TranslucentScreenTransitionOption](#translucentscreentransitionoption)
+  - [Have MainMenu display at start](#have-mainmenu-display-at-start)
+  - [Transition from the main menu to settings.](#transition-from-the-main-menu-to-settings)
+  - [Transition back to the main menu](#transition-back-to-the-main-menu)
+  - [Fade out and exit](#fade-out-and-exit)
+  - [Fade out and in to GamePlay](#fade-out-and-in-to-gameplay)
+    - [Start a GameLevel in the background](#start-a-gamelevel-in-the-background)
+  - [Fade back to MainMenu from GamePlay](#fade-back-to-mainmenu-from-gameplay)
+    - [Game is not paused](#game-is-not-paused)
+    - [HUD should stay in place](#hud-should-stay-in-place)
+    - [Fade the background](#fade-the-background)
+  - [Resume the game](#resume-the-game)
+  - [Settings and About](#settings-and-about)
+
+
 With nodes added to a normal button in Godot (BaseButton) we can easily create 
 transitions between different menus. 
 
@@ -12,11 +38,12 @@ After some short descriptions of some of the nodes, I will walk you through buil
 up a gamemenu step by step. 
 
 ## Main concepts 
-Start by building a main menu as you normally would. With Control-nodes and Button-nodes. 
+When using `MenuSystem` you start by building a main menu as you normally 
+would. With Control-nodes and Button-nodes. 
 
 ![BasicTreeOfButtons](Documentation/Images/basic_tree_only_buttons.png)
 
-`MenySystem` uses these buttons to know when to transition by connecting to 
+`MenuSystem` uses these buttons to know when to transition by connecting to 
 the buttons `Pressed` signals. The button may be of any kind of button that 
 derives from `BaseButton`. `TransitonButton`, se below, gives these buttons 
 extra functionality. 
@@ -75,6 +102,60 @@ The menus moves in a set direction in/out of the screen
 
 https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp
 
+### Option-nodes
+Sometimes you need some extra functionality in your transitions, for this we have some 
+`TransitionOption`-nodes. 
+
+The built in `TransitionOption`-nodes
+- ![PauseGameOption](addons/menusystem/Art/hourglass_empty_30dp.svg) PauseGameTransitionOption
+- ![QuitGameOption](addons/menusystem/Art/power_30dp.svg) QuitGameTransitionOption
+- ![TranslucentOption](addons/menusystem/Art/blur_on_30dp.svg) TranslucentScreenTransitionOption
+- ![InvokeEventOption](addons/menusystem/Art/cell_tower_30dp.svg) InvokeEventOption
+- ![TestPrintOption](addons/menusystem/Art/experiment_30dp.svg) TestPrintOption
+- ![DisableOption](addons/menusystem/Art/blur_on_30dp_red.svg) DisableMenuOption
+
+![TransitionOption](Documentation/Images/TransitionOption.png)
+TransitionOption-nodes can be invoked two times. 
+1. When the user presses the connected button
+1. When returning back to the menu
+
+This usually means it sets a value when you press the button, and unset this value when 
+you return back to the menu. 
+
+You have the option to choose when the action is to take place during the transition. The two
+easiest option to understand are probably `BeforeAllTransition` and `AfterAllTransition`. They are,
+as the name implies, invoked before any transition takes place or after all transition have taken
+place. 
+![TransitionWhen](Documentation/Images/Transition_WhenEvent.png)
+
+`AfterPageFromTransition` and `AfterPageToTransition` are invoked when the transition of the menu we are leaving or the menu we are returning to, respectivly, are finished. 
+
+    Note: When we press the button to go back (using Pop as Transition-type), that current
+    menu is the 'From'-menu and the menu we are going back to is the 'To'-menu. 
+
+#### PauseGameTransitionOption
+![PauseGameOption](addons/menusystem/Art/hourglass_empty_30dp.svg)
+
+`When Leaving Menu`: The game is paused.
+`When Returning To Menu`: The game is unpaused
+
+#### QuitGameTransitionOption
+![QuitGameOption](addons/menusystem/Art/power_30dp.svg)
+
+`When Leaving Menu`: Exits the game
+`When Returning To Menu`: Does nothing, we're not coming back here
+
+#### TranslucentScreenTransitionOption
+![TranslucentOption](addons/menusystem/Art/blur_on_30dp.svg)
+
+![TranslucentScreenLayer](Documentation/Images/TranslucentLayer.png)
+
+`Translucent Level`: Sets how translucent the screen is. This directly affects the alpha of the screen. 
+`Fade Time`: The time, in seconds, the fading should take
+
+`When Leaving Menu`: Fades the screen to set value of `Translucent Level`
+`When Returning To Menu`: Fades the screen back to full transparancy
+
 ## Have MainMenu display at start
 In the `_Ready()` of your start scene:
 ```csharp
@@ -110,7 +191,7 @@ the top menu (Settings menu) and makes the next menu active (MainMenu).
 
 ![Transition back to MainMenu](Documentation/Images/settingsmenu_nodetree.png)
 
-1. To the `GoBackButton`, add a `TransitionButton` as a child
+1. To the `GoBackButton` (Normal button renamed to 'GoBackButton'), add a `TransitionButton` as a child
 1. Set the transition-type to `Pop`
 1. Leave the `Transition to path` blank. (MenuController already knows where to go)
 1. As a child to `TransitionButton` add a `MoveTransition`-node
@@ -151,7 +232,7 @@ To fade out and in to a new scene is nothing new at this point. So let's do it.
 
 1. To the `PlayButton`, add a `TransitionButton` as a child
 1. Have the transition-type set to `Switch`
-1. And set the `Transition to path` to point to the GamePlay scene
+1. And set the `Transition to path` to point to the GamePlay scene (This is the HUD)
 ![AddTransitionButton](Documentation/Images/transitionbutton_switch_sceneset.png)
 1. As a child to `TransitionButton` add a `FadeTransition`-node
 ![AddTransitionButton](Documentation/Images/playbutton_fadetransition.png)
@@ -161,49 +242,12 @@ To fade out and in to a new scene is nothing new at this point. So let's do it.
 When we press `PlayButton` we want to have a game level loaded alongside the menu
 part `GamePlay.tscn`. 
 
-1. Add script to the `PlayButton`
-1. Add the following to the `PlayButton`-script
-    ```csharp
-    public partial class PlayButton : Button
-    {
-        Transition _transitionNode;
-
-        public override void _Ready()
-        {
-            _transitionNode = this.GetAllChildren<TransitionButton>().FirstOrDefault().TransitionNode;
-            _transitionNode.OnPostPageFromTransition += LoadGameLevel;
-        }
-
-        public override void _ExitTree()
-        {
-            _transitionNode.OnPostPageFromTransition -= LoadGameLevel;
-        }
-
-        private void LoadGameLevel(Control control)
-        {
-            GameEvents.StartGame();
-        }
-    }
-    ```
-    The `GetAllChildren` method is part of the addon. The node you want is the 
-`Transition`-node  (InstantTransition, MoveTransition, FadeTransition, etc).
-`TransitionButton` have a reference to the node, `TransitionNode`. 
-The `Transition`-node have events we want to use.
-1. Create a new script with the name: `GameEvents.cs` with the following content
-    ```csharp
-    public static class GameEvents
-    {
-        public static event Action OnGameLevelStart;
-        public static event Action OnGameLevelEnd;
-        public static event Action OnGamePaused;
-        public static event Action OnGameResumed;
-
-        public static void StartGame() => OnGameLevelStart?.Invoke();
-        public static void EndGame() => OnGameLevelEnd?.Invoke();
-        public static void PauseGame() => OnGamePaused?.Invoke();
-        public static void ResumeGame() => OnGameResumed?.Invoke();
-    }
-    ```
+1. To the `TransitionButton`, add a `InvokeEventOption` as a child
+    ![PlayButtonNodeTree](Documentation/Images/playbutton_fadetransition_nodetree.png)
+1. On `InvokeEventOption`
+   1. Set Invoke to `GameLevelStart`
+   2. Set When leaving menu to `AfterPageFromTransition`
+    ![InvokeEventOptionSettings](Documentation/Images/InvokeEventTransitionOption_Settings_AfterPageFromTransition.png)
 1. Edit the script on the root node of `Game.tscn` (This is our startscene).
     ```csharp
     public partial class Game : Node
@@ -253,7 +297,8 @@ issues I have with this. Let's take care of them one by one.
 ### Game is not paused
 When we press the `Pause Game` button we expect the game to be paused.
 1. Add a `PauseGameTransitionOption` node as a child to `TransitionButton`
-1. Set `When To Perform Action` to `BeforeAllTransition`
+1. Set `When leaving menu` to `BeforeAllTransition`
+2. Set `When returning to menu` to `AfterAllTransition`
 This pauses the game. 
 
 ### HUD should stay in place
@@ -263,31 +308,36 @@ This makes the active menu (HUD in this case) to ignore the transition-movements
 
 Info: 
     
-    Although the GamePlay menu is visible, its buttons are not clickable.
+    Although the GamePlay menu is visible, its buttons are NOT clickable.
 
 ### Fade the background 
 To indicate that the background (the game scene) is not active we want to fade
 it towards black with some translucency remaining.
 1. Add a `TranslucentScreenTransitionOption` node as a child to `TransitionButton`
 1. Set `Translucent Level` to 0.8. (This is the target alpha value)
-1. Set `When To Perform Action` to `BeforeAllTransition`
+2. Set `When leaving menu` to `BeforeAllTransition`
+2. Set `When returning to menu` to `BeforeAllTransition`
 
 After adding these three extra nodes, the scene-tree now looks like this.
 ![AddTransitionButton](Documentation/Images/pausebutton_nodetree_extra.png)
 
 ## Resume the game
-When we press the `ResumeButton` we want the game to resume.
+When we press the `ResumeButton` we want the game to resume. This is actually very easy. 
 
-This is actually very easy. 
+In the PauseMenu.tscn:
 1. To the `ResumeButton`, add a `TransitionButton` as a child
 1. Have the transition-type set to `Pop`
 1. Add a `MoveTransition` node as a child to `TransitionButton`
 1. Set `Move Direction` to `Right`
 
-Note:
+**Note:**
 
     The important part here is TransitionType in TransitionButton 
     is set to Pop. MenuController needs to know we are returning to GamePlay.
+
+    When we set the `Option`-nodes we set when in the return-transition to transition
+    the values back to its default. This is why the game is resumed and faded
+    back to full transparancy when we return to the GamePlay-scene.
     
 ## Settings and About
 In the pause menu we add the exact same `TransitionButton` nodes with the 
@@ -295,4 +345,5 @@ same settings as these buttons have in the `MainMenu`.
 
 When you press `Settings` you end up in the `Settings`-menu, and whithout 
 changing the `Settings`-menu you return to the `Pause`-menu when pressing
-the backbutton. 
+the backbutton. Because of `MenuController` uses a stack it keeps track of where
+you came from.
