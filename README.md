@@ -124,6 +124,7 @@ The built in `TransitionOption`-nodes
 - ![DisableOption](addons/menusystem/Art/blur_on_30dp_red.svg) DisableMenuOption
 
 ![TransitionOption](Documentation/Images/TransitionOption.png)
+
 TransitionOption-nodes can be invoked two times. 
 1. When the user presses the connected button
 1. When returning back to the menu
@@ -148,12 +149,14 @@ place.
 ![PauseGameOption](addons/menusystem/Art/hourglass_empty_30dp.svg)
 
 `When Leaving Menu`: The game is paused.
+
 `When Returning To Menu`: The game is unpaused
 
 #### QuitGameTransitionOption
 ![QuitGameOption](addons/menusystem/Art/power_30dp.svg)
 
 `When Leaving Menu`: Exits the game
+
 `When Returning To Menu`: Does nothing, we're not coming back here
 
 #### TranslucentScreenTransitionOption
@@ -162,9 +165,11 @@ place.
 ![TranslucentScreenLayer](Documentation/Images/TranslucentLayer.png)
 
 `Translucent Level`: Sets how translucent the screen is. This directly affects the alpha of the screen. 
+
 `Fade Time`: The time, in seconds, the fading should take
 
 `When Leaving Menu`: Fades the screen to set value of `Translucent Level`
+
 `When Returning To Menu`: Fades the screen back to full transparancy
 
 #### InvokeEventOption
@@ -194,6 +199,7 @@ In your code you can subscribe to these event as follows:
 ```
 
 `When Leaving Menu`: Invokes set event
+
 `When Returning To Menu`: Invokes set event
 
 #### TestPrintOption
@@ -202,6 +208,7 @@ In your code you can subscribe to these event as follows:
 This node is basically a "print-debug"-node 
 
 `When Leaving Menu`: Prints the path of the node
+
 `When Returning To Menu`: Prints the path of the node
 
 #### DisableMenuOption
@@ -288,9 +295,9 @@ To fade out and in to a new scene is nothing new at this point. So let's do it.
 1. To the `PlayButton`, add a `TransitionButton` as a child
 1. Have the transition-type set to `Switch`
 1. And set the `Transition to path` to point to the GamePlay scene (This is the HUD)
-![AddTransitionButton](Documentation/Images/transitionbutton_switch_sceneset.png)
+    ![AddTransitionButton](Documentation/Images/transitionbutton_switch_sceneset.png)
 1. As a child to `TransitionButton` add a `FadeTransition`-node
-![AddTransitionButton](Documentation/Images/playbutton_fadetransition.png)
+    ![AddTransitionButton](Documentation/Images/playbutton_fadetransition.png)
 1. Leave settings at default values
 
 #### Start a GameLevel in the background 
@@ -298,12 +305,13 @@ When we press `PlayButton` we want to have a game level loaded alongside the men
 part `GamePlay.tscn`. 
 
 1. To the `TransitionButton`, add a `InvokeEventOption` as a child
+   
     ![PlayButtonNodeTree](Documentation/Images/playbutton_fadetransition_nodetree.png)
-1. On `InvokeEventOption`
+2. On `InvokeEventOption`
    1. Set Invoke to `GameLevelStart`
    2. Set When leaving menu to `AfterPageFromTransition`
     ![InvokeEventOptionSettings](Documentation/Images/InvokeEventTransitionOption_Settings_AfterPageFromTransition.png)
-1. Edit the script on the root node of `Game.tscn` (This is our startscene).
+3. Edit the script on the root node of `Game.tscn` (This is our startscene).
     ```csharp
     public partial class Game : Node
     {
