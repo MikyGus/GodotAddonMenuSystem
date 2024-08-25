@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="MenySystem"
+config/version="1.0.0"
 run/main_scene="res://Documentation/Scenes/Game.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Documentation/Images/MenuIcon.png"
 
 [autoload]
 
