@@ -17,6 +17,7 @@ public partial class MenuController : CanvasLayer
     private Stack<StackMenu> _menuStack = new();
     private bool _isPerformingTransition = false;
     private Control _menuControl;
+    private TransitionButton _latestTransitionButton;
 
     private record struct StackMenu
     {
@@ -69,6 +70,7 @@ public partial class MenuController : CanvasLayer
             return;
         }
 
+        _latestTransitionButton = transitionButton;
         _isPerformingTransition = true;
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Stop;
 
@@ -82,6 +84,7 @@ public partial class MenuController : CanvasLayer
             StackTransitionType.Push => PushToMenuStack(transitionToScene),
             StackTransitionType.Pop when _menuStack.Count >= 1 => PopFromMenuStack(),
             StackTransitionType.Switch => SwitchMenuInStackTo(transitionToScene),
+            StackTransitionType.ClearAllAndPush => ClearAllAndPushToStack(transitionToScene),
             _ => (DefaultStackMenu, DefaultStackMenu)
         };
 
@@ -223,6 +226,32 @@ public partial class MenuController : CanvasLayer
         _menuStack.Push(to);
         MenuControlAddChild(to.Menu);
         return (from, to);
+    }
+
+    private (StackMenu from, StackMenu to) ClearAllAndPushToStack(PackedScene transitionTo)
+    {
+        StackMenu from = _menuStack.Count > 0 ? _menuStack.Pop() : DefaultStackMenu;
+        Control toMenu = transitionTo.Instantiate<Control>();
+        StackMenu to = new StackMenu() { Menu = toMenu };
+
+        _latestTransitionButton.TransitionNode.OnPostPageFromTransition += ClearMenuStack;
+
+        _menuStack.Push(to);
+        MenuControlAddChild(to.Menu);
+        return (from, to);
+    }
+
+    private void ClearMenuStack(Control control)
+    {
+        StackMenu currentMenu = _menuStack.Pop();
+        foreach (StackMenu item in _menuStack)
+        {
+            item.Menu.QueueFree();
+        }
+        _menuStack.Clear();
+        _menuStack.Push(currentMenu);
+
+        _latestTransitionButton.TransitionNode.OnPostPageFromTransition -= ClearMenuStack;
     }
 
     private void CleanupMenuNodes(StackTransitionType transitionType, (StackMenu From, StackMenu To) menus)

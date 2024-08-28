@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm73be26b6oc7"]
+[gd_scene load_steps=3 format=3 uid="uid://bm73be26b6oc7"]
 
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="2_5inuy"]
-[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="3_8qt5v"]
 [ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="4_tjk71"]
 
 [node name="PauseMenu" type="Control"]
@@ -91,13 +90,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_5inuy")
+TransitionToPath = "res://Documentation/Scenes/AreYouSure.tscn"
 
-[node name="FadeTransition" type="Control" parent="VBoxContainer/QuitToMainButton/TransitionButton"]
+[node name="MoveTransition" type="Control" parent="VBoxContainer/QuitToMainButton/TransitionButton"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_8qt5v")
-FadeType = 2
+script = ExtResource("4_tjk71")
+MoveDirection = 3
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

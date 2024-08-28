@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://qcop2x4vbm3b"]
+
+[ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_fcjhg"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/MoveTransition.cs" id="2_6yfs0"]
+[ext_resource type="Script" path="res://addons/menusystem/Transitions/FadeTransition.cs" id="2_rryw8"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/InvokeEventTransitionOption.cs" id="3_xgncy"]
+[ext_resource type="Script" path="res://addons/menusystem/TransitionOptions/ClearTransitionOptions.cs" id="5_spvbe"]
+
+[node name="AreYouSure" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 217.0
+offset_right = 167.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "ARE  YOU SURE???"
+
+[node name="YesButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -20.0
+offset_right = -51.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YES"
+
+[node name="TransitionButton" type="Control" parent="YesButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fcjhg")
+TransitionType = 3
+TransitionToPath = "res://Documentation/Scenes/MainMenu.tscn"
+
+[node name="FadeTransition" type="Control" parent="YesButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_rryw8")
+
+[node name="ClearTransitionOptions" type="Control" parent="YesButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_spvbe")
+_pausedGame = true
+_translucentScreen = true
+WhenLeavingMenu = 3
+
+[node name="InvokeEventOption" type="Control" parent="YesButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_xgncy")
+Invoke = 1
+WhenLeavingMenu = 3
+
+[node name="NoButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 35.0
+offset_top = -19.0
+offset_right = 121.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NO"
+
+[node name="TransitionButton" type="Control" parent="NoButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fcjhg")
+TransitionType = 1
+
+[node name="MoveTransition" type="Control" parent="NoButton/TransitionButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_6yfs0")
+MoveDirection = 2

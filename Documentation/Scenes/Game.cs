@@ -11,18 +11,30 @@ public partial class Game : Node
 
         // Subscribe to when the GameLevelStart
         MenuEvents.OnGameLevelStart += GameStart;
+        MenuEvents.OnGameLevelEnd += GameEnd;
     }
 
     public override void _ExitTree()
     {
         // UnSubscribe to when the GameLevelStart
         MenuEvents.OnGameLevelStart -= GameStart;
+        MenuEvents.OnGameLevelEnd -= GameEnd;
     }
 
     private void GameStart()
     {
         PackedScene gameLevel = GD.Load<PackedScene>("res://Documentation/Scenes/GameLevel.tscn");
         Node2D gameInst = gameLevel.Instantiate<Node2D>();
-        AddChild(gameInst);
+
+        GetNode<Node>("GameLevel").AddChild(gameInst);
+    }
+
+    private void GameEnd()
+    {
+        Godot.Collections.Array<Node> children = GetNode<Node>("GameLevel").GetChildren();
+        foreach (Node child in children)
+        {
+            child.QueueFree();
+        }
     }
 }
