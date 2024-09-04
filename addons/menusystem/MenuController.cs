@@ -238,7 +238,6 @@ public partial class MenuController : CanvasLayer
         Control toMenu = transitionTo.Instantiate<Control>();
         StackMenu to = new StackMenu() { Menu = toMenu };
 
-        // TODO: Test this a bit more
         _latestTransitionButton.TransitionNode.OnPostPageFromTransition += ClearMenuStack;
 
         _menuStack.Push(to);
