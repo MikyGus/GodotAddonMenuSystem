@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtx2ld0gkkbgb"]
+[gd_scene load_steps=8 format=3 uid="uid://dds8xup5ewqo6"]
 
 [ext_resource type="StyleBox" uid="uid://d1e88kclgcohb" path="res://Documentation/Scenes/LabelHudStyle.tres" id="1_a4c4u"]
 [ext_resource type="Script" path="res://addons/menusystem/Buttons/TransitionButton.cs" id="1_dol28"]

@@ -13,6 +13,7 @@ public partial class init : EditorPlugin
     private const string DisableMenu = "DisableMenuOption";
     private const string EventOption = "InvokeEventOption";
     private const string ClearOptions = "ClearTransitionOptions";
+    private const string GameSceneLoader = "GameSceneLoader";
 
     public override void _EnterTree()
     {
@@ -62,6 +63,7 @@ public partial class init : EditorPlugin
         AddCustomType(ClearOptions, Constants.NODE_CONTROL, clearOptions, clearOptionsIcon);
 
         AddAutoloadSingleton("MenuController", $"{Constants.BASE_PATH}MenuController.tscn");
+        AddAutoloadSingleton(GameSceneLoader, $"{Constants.BASE_PATH}/GameLoad/GameSceneLoader.cs");
     }
 
     public override void _ExitTree()
@@ -78,6 +80,7 @@ public partial class init : EditorPlugin
         RemoveCustomType(EventOption);
         RemoveCustomType(ClearOptions);
         RemoveAutoloadSingleton("MenuController");
+        RemoveAutoloadSingleton(GameSceneLoader);
     }
 }
 #endif

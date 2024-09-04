@@ -349,7 +349,7 @@ the `PauseMenu`. We will start setting up a simple transition to the
 `PauseMenu`.
 
 1. To the `PauseButton`, add a `TransitionButton` as a child
-1. Have the transition-type set to its defaul (`Push`)
+1. Have the transition-type set to its default (`Push`)
 1. And set the `Transition to path` to point to the Pause scene
     ![AddTransitionButton](Documentation/Images/transitionbutton_push_sceneset.png)
 1. As a child to `TransitionButton` add a `MoveTransition`-node

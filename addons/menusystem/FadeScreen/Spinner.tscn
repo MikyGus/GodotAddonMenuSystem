@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0yj2cdoh6e2w"]
+
+[ext_resource type="Texture2D" uid="uid://b70l74gkcepa4" path="res://addons/menusystem/Art/loading.svg" id="1_6lbfr"]
+[ext_resource type="Script" path="res://addons/menusystem/FadeScreen/Spinner.cs" id="1_022gh"]
+[ext_resource type="Script" path="res://addons/menusystem/FadeScreen/LoadingTexture.cs" id="2_cthom"]
+
+[node name="Spinner" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_022gh")
+
+[node name="LoadingTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 100)
+mouse_filter = 2
+texture = ExtResource("1_6lbfr")
+expand_mode = 1
+script = ExtResource("2_cthom")

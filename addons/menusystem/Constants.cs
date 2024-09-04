@@ -10,6 +10,7 @@ public static class Constants
 
     public const string PROPERTY_POSITION = "position";
     public const string PROPERTY_MODULATE_A = "modulate:a";
+    public const string PROPERTY_SELF_MODULATE_A = "self_modulate:a";
 
     public const string EVENT_FINISHED = "finished";
 }

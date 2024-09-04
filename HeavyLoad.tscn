@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bl1y56oix33em"]
+
+[ext_resource type="Texture2D" uid="uid://bml3t1wukmsrk" path="res://Temp/Copenhagen.jpg" id="1_q1tl3"]
+[ext_resource type="Texture2D" uid="uid://crmwksp7u1pby" path="res://Temp/Copenhagen-02.jpg" id="2_a4rlx"]
+[ext_resource type="Texture2D" uid="uid://cxwcyt1kqepq4" path="res://Temp/Copenhagen-03.jpg" id="3_ou2d2"]
+[ext_resource type="Texture2D" uid="uid://byurib5n2bkbf" path="res://Temp/Copenhagen-04.jpg" id="4_5s36m"]
+[ext_resource type="Texture2D" uid="uid://bti20p3o1c8rl" path="res://Temp/Copenhagen-05.jpg" id="5_72jwk"]
+[ext_resource type="Texture2D" uid="uid://dk3wy5w6ilb7e" path="res://Temp/Copenhagen-06.jpg" id="6_febw0"]
+
+[node name="HeavyLoad" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q1tl3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_a4rlx")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture = ExtResource("3_ou2d2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture = ExtResource("4_5s36m")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture = ExtResource("5_72jwk")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+texture = ExtResource("6_febw0")

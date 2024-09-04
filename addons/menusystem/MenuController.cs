@@ -13,6 +13,7 @@ public partial class MenuController : CanvasLayer
     public static MenuController Instance { get; private set; }
     public FadeScreen CoverScreen { get; private set; }
     public FadeScreen TranslucentScreen { get; private set; }
+    public Spinner LoadingSpinner { get; private set; }
 
     private Stack<StackMenu> _menuStack = new();
     private bool _isPerformingTransition = false;
@@ -38,6 +39,9 @@ public partial class MenuController : CanvasLayer
 
         CoverScreen = GetNode<FadeScreen>("CoverScreen");
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
+
+        LoadingSpinner = GetNode<Spinner>("Spinner");
+        LoadingSpinner.Visible = false;
     }
 
     //public async Task TransitionToMenu(Transition transitionNode, StackTransitionType transitionType, string transitionToPath)
@@ -234,6 +238,7 @@ public partial class MenuController : CanvasLayer
         Control toMenu = transitionTo.Instantiate<Control>();
         StackMenu to = new StackMenu() { Menu = toMenu };
 
+        // TODO: Test this a bit more
         _latestTransitionButton.TransitionNode.OnPostPageFromTransition += ClearMenuStack;
 
         _menuStack.Push(to);
@@ -241,7 +246,7 @@ public partial class MenuController : CanvasLayer
         return (from, to);
     }
 
-    private void ClearMenuStack(Control control)
+    private void ClearMenuStack(Control _)
     {
         StackMenu currentMenu = _menuStack.Pop();
         foreach (StackMenu item in _menuStack)

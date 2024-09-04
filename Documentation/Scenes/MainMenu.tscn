@@ -47,6 +47,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_ero31")
+WaitForSceneLoadedEvent = true
 
 [node name="InvokeEventOption" type="Control" parent="VBoxContainer/PlayButton/TransitionButton"]
 anchors_preset = 0

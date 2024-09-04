@@ -1,8 +1,10 @@
 using Godot;
 using MenySystem.addons.menusystem;
+using MenySystem.addons.menusystem.GameLoad;
 
 public partial class Game : Node
 {
+    private string _loadPath = "res://Documentation/Scenes/GameLevel.tscn";
     public override void _Ready()
     {
         // Set startscene 
@@ -21,13 +23,7 @@ public partial class Game : Node
         MenuEvents.OnGameLevelEnd -= GameEnd;
     }
 
-    private void GameStart()
-    {
-        PackedScene gameLevel = GD.Load<PackedScene>("res://Documentation/Scenes/GameLevel.tscn");
-        Node2D gameInst = gameLevel.Instantiate<Node2D>();
-
-        GetNode<Node>("GameLevel").AddChild(gameInst);
-    }
+    private void GameStart() => GameSceneLoader.Instance.LoadScene(_loadPath, GetNode<Node>("GameLevel"));
 
     private void GameEnd()
     {
