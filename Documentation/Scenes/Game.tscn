@@ -1,8 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://qa34jvu8nhnd"]
+[gd_scene load_steps=5 format=3 uid="uid://qa34jvu8nhnd"]
 
 [ext_resource type="Script" path="res://Documentation/Scenes/Game.cs" id="1_ha24v"]
 
+[sub_resource type="Gradient" id="Gradient_mfqw2"]
+offsets = PackedFloat32Array(0.299685, 0.798107)
+colors = PackedColorArray(0, 0.686275, 1, 1, 0.775181, 0.0754355, 0.38684, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n6gih"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oa667"]
+width = 1600
+height = 800
+color_ramp = SubResource("Gradient_mfqw2")
+noise = SubResource("FastNoiseLite_n6gih")
+
 [node name="Game" type="Node"]
 script = ExtResource("1_ha24v")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(638, 352)
+texture = SubResource("NoiseTexture2D_oa667")
 
 [node name="GameLevel" type="Node" parent="."]

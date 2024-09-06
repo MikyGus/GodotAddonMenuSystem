@@ -21,7 +21,7 @@ public partial class GameSceneLoader : Node
         _loadPath = scenePath;
         _parentNode = parent;
 
-        MenuController.Instance.LoadingSpinner.Visible = true;
+        MenuController.Instance.LoadingSpinner.StartLoading();
         // TODO: Handle errors, like invalid loadPath
         ResourceLoader.LoadThreadedRequest(_loadPath);
     }
@@ -33,7 +33,7 @@ public partial class GameSceneLoader : Node
         {
             PackedScene packed_scene = ResourceLoader.LoadThreadedGet(_loadPath) as PackedScene;
             _parentNode.AddChild(packed_scene.Instantiate<Node2D>());
-            MenuController.Instance.LoadingSpinner.Visible = false;
+            MenuController.Instance.LoadingSpinner.EndLoading();
             OnSceneLoaded?.Invoke();
         }
     }

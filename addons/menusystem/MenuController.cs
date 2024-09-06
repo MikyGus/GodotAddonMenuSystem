@@ -41,7 +41,6 @@ public partial class MenuController : CanvasLayer
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
 
         LoadingSpinner = GetNode<Spinner>("Spinner");
-        LoadingSpinner.Visible = false;
     }
 
     //public async Task TransitionToMenu(Transition transitionNode, StackTransitionType transitionType, string transitionToPath)
@@ -102,9 +101,11 @@ public partial class MenuController : CanvasLayer
 
         CleanupMenuNodes(transitionButton.TransitionType, menus);
 
+#if DEBUG
         // Debug
         //StackDebug();
         // Debug
+#endif
 
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
         _isPerformingTransition = false;
@@ -156,6 +157,7 @@ public partial class MenuController : CanvasLayer
         }
     }
 
+#if DEBUG
     /// <summary>
     /// In debug we print the current stack
     /// </summary>
@@ -169,6 +171,7 @@ public partial class MenuController : CanvasLayer
         //PrintOrphanNodes();
         GD.Print("-------------STACK-END--------");
     }
+#endif
 
     public void SetInitialMenu(PackedScene initialMenu)
     {

@@ -9,6 +9,8 @@ public static class Constants
     public const string NODE_TEXTUREBUTTON = "TextureButton";
 
     public const string PROPERTY_POSITION = "position";
+    public const string PROPERTY_SIZE = "size";
+    public const string PROPERTY_SCALE = "scale";
     public const string PROPERTY_MODULATE_A = "modulate:a";
     public const string PROPERTY_SELF_MODULATE_A = "self_modulate:a";
 
