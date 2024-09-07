@@ -42,6 +42,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_2g2yd")
 TransitionType = 1
+_actionKey = "ESC"
 
 [node name="MoveTransition" type="Control" parent="GoBackButton/TransitionButton"]
 anchors_preset = 0

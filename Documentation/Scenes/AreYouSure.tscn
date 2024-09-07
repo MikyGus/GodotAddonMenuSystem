@@ -94,6 +94,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_fcjhg")
 TransitionType = 1
+_actionKey = "ESC"
 
 [node name="MoveTransition" type="Control" parent="NoButton/TransitionButton"]
 anchors_preset = 0

@@ -22,7 +22,6 @@ public partial class GameSceneLoader : Node
         _parentNode = parent;
 
         MenuController.Instance.LoadingSpinner.StartLoading();
-        // TODO: Handle errors, like invalid loadPath
         ResourceLoader.LoadThreadedRequest(_loadPath);
     }
 

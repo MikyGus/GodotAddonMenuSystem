@@ -34,6 +34,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_dol28")
 TransitionToPath = "res://Documentation/Scenes/PauseMenu.tscn"
+_actionKey = "ESC"
 
 [node name="MoveTransition" type="Control" parent="PauseButton/TransitionButton"]
 anchors_preset = 0

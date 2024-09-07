@@ -37,6 +37,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_5inuy")
 TransitionType = 1
+_actionKey = "ESC"
 
 [node name="MoveTransition" type="Control" parent="VBoxContainer/ResumeButton/TransitionButton"]
 anchors_preset = 0

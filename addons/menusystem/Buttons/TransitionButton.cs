@@ -33,16 +33,21 @@ public partial class TransitionButton : Control
             UpdateConfigurationWarnings();
         }
     }
+
+    [Export]
+    private string _actionKey = string.Empty;
+
     public Transition TransitionNode { get; private set; }
 
     public override void _Ready()
     {
+#if TOOLS
         if (Engine.IsEditorHint())
         {
             ChildEnteredTree += UpdateConfigurationWarnings;
             ChildExitingTree += UpdateConfigurationWarnings;
         }
-
+#endif
         TransitionNode = GetNodes.GetAllChildren<Transition>(this).FirstOrDefault();
 
         if (Engine.IsEditorHint() == false)
@@ -61,10 +66,27 @@ public partial class TransitionButton : Control
         }
     }
 
+    public override async void _Input(InputEvent @event)
+    {
+        // We check if the menu is the current one due to 'DisableMenuOption'. The menu is still
+        // active in the background, despite the name 'disable'. And because of this it still 
+        // handles key-inputs. 
+        if (string.IsNullOrEmpty(_actionKey) || Owner.Equals(MenuController.Instance.CurrentMenu) == false)
+        {
+            return;
+        }
+
+        if (Input.IsActionJustPressed(_actionKey))
+        {
+            await MenuController.Instance.TransitionToMenu(this);
+        }
+    }
+
     public bool IsValid() => ValidateNode().Count == 0;
 
     private async void OnButtonPressed() => await MenuController.Instance.TransitionToMenu(this);
 
+    #region  Validation
     private void UpdateConfigurationWarnings(Node node) => UpdateConfigurationWarnings();
 
     public override string[] _GetConfigurationWarnings() => ValidateNode().ToArray();
@@ -75,17 +97,14 @@ public partial class TransitionButton : Control
         errors.AddRange(ValidateParent());
         errors.AddRange(ValidateTransitionNode());
         errors.AddRange(ValidateTransitionTo());
+        errors.AddRange(ValidateActionMap());
         return errors;
     }
 
     private IEnumerable<string> ValidateParent()
-    {
-        if (GetParent() is not BaseButton)
-        {
-            return new List<string>() { "Parent must be derived from 'BaseButton'" };
-        }
-        return new List<string>();
-    }
+        => GetParent() is not BaseButton
+        ? new List<string>() { "Parent must be derived from 'BaseButton'" }
+        : new List<string>();
 
     private List<string> ValidateTransitionTo()
     {
@@ -115,4 +134,19 @@ public partial class TransitionButton : Control
         }
         return new List<string>();
     }
+
+    private List<string> ValidateActionMap()
+    {
+        if (string.IsNullOrEmpty(_actionKey))
+        {
+            return new List<string>();
+        }
+
+        InputMap.LoadFromProjectSettings();
+
+        return InputMap.HasAction(_actionKey)
+            ? new List<string>()
+            : new List<string>() { $"The InputMap action '{_actionKey}' does not exist. Did you spell i correctly?" };
+    }
+    #endregion
 }

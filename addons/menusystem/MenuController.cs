@@ -14,6 +14,7 @@ public partial class MenuController : CanvasLayer
     public FadeScreen CoverScreen { get; private set; }
     public FadeScreen TranslucentScreen { get; private set; }
     public Spinner LoadingSpinner { get; private set; }
+    public Control CurrentMenu { get; private set; } = null;
 
     private Stack<StackMenu> _menuStack = new();
     private bool _isPerformingTransition = false;
@@ -107,6 +108,10 @@ public partial class MenuController : CanvasLayer
         // Debug
 #endif
 
+        // Sets the current menu at the end of the transition to make
+        // sure the actually current menu is allways reported. Some weird
+        // behaviour may occur with keyActions otherwise.
+        CurrentMenu = _menuStack.Peek().Menu;
         CoverScreen.MouseFilter = Control.MouseFilterEnum.Ignore;
         _isPerformingTransition = false;
     }
@@ -184,6 +189,7 @@ public partial class MenuController : CanvasLayer
         StackMenu stackMenu = new StackMenu() { Menu = menu };
         _menuControl.AddChild(menu);
         _menuStack.Push(stackMenu);
+        CurrentMenu = menu;
     }
 
     /// <summary>
