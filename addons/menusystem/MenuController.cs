@@ -15,6 +15,7 @@ public partial class MenuController : CanvasLayer
     public FadeScreen TranslucentScreen { get; private set; }
     public Spinner LoadingSpinner { get; private set; }
     public Control CurrentMenu { get; private set; } = null;
+    public bool PrintStackAfterMenuTransition { get; set; } = false;
 
     private Stack<StackMenu> _menuStack = new();
     private bool _isPerformingTransition = false;
@@ -103,9 +104,10 @@ public partial class MenuController : CanvasLayer
         CleanupMenuNodes(transitionButton.TransitionType, menus);
 
 #if DEBUG
-        // Debug
-        //StackDebug();
-        // Debug
+        if (PrintStackAfterMenuTransition)
+        {
+            StackDebug();
+        }
 #endif
 
         // Sets the current menu at the end of the transition to make
