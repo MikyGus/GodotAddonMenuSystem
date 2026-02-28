@@ -1,10 +1,55 @@
-# Menusystem addon for Godot
+# Godot Menu System Addon (C#)
 
-**Create transitions between your menu-scenes with ease.**
+A reusable and structured C# addon for the Godot Engine that provides controlled, state-based menu transitions.
 
-With nodes added to a normal button in Godot (BaseButton) we can easily create transitions between different menus. 
+This project focuses on architecture and maintainability rather than game logic.  
+It introduces a centralized transition controller, stack-based state handling, and modular transition behaviors to avoid tightly coupled UI scene navigation.
 
-This addon for Godot is written i C#
+---
+
+## Architectural Overview
+
+The addon is built around a stack-driven menu state machine managed by a global `MenuController`.
+
+Key design principles:
+
+- Centralized transition supervision
+- Stack-based state management (Push / Pop / Switch)
+- Explicit transition configuration
+- Decoupled menu components
+- Event-driven extension points
+- Strong typing via C#
+
+Menus are treated as stackable states.  
+Transitions operate as controlled state changes rather than direct scene manipulation.
+
+---
+
+## Technical Highlights
+
+- Written entirely in C#
+- Stack-based state machine
+- Modular transition components
+- Event-based extension system
+- Plugin-based distribution (Godot addon)
+- Separation of transition logic from UI layout
+
+---
+
+## Purpose
+
+The goal of this addon is to:
+
+- Reduce scene coupling in UI systems
+- Improve maintainability as menu complexity grows
+- Provide reusable transition logic across projects
+- Encourage structured design in Godot C# projects
+
+---
+
+Below follows the practical usage documentation.
+
+---
 
 The demofiles referred to in this documentation can be found in the 
 `documentation/scenes` folder.
@@ -414,3 +459,12 @@ When you press `Settings` you end up in the `Settings`-menu, and whithout
 changing the `Settings`-menu you return to the `Pause`-menu when pressing
 the backbutton. Because of `MenuController` uses a stack it keeps track of where
 you came from.
+
+## Lessons Learned
+
+This project strengthened my focus on:
+
+- Explicit state handling
+- Avoiding implicit scene coupling
+- Structuring reusable components
+- Designing predictable transition flows
